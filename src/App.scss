@@ -1,0 +1,13 @@
+.viewport {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+
+  &__content {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    background: linear-gradient(to top, #33aa55, #61f179);
+    padding: 20px;
+  }
+}

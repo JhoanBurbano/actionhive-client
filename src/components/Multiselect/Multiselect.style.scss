@@ -1,0 +1,11 @@
+.multiselect-custom {
+    color: black;
+    border: none;
+    outline: none;
+    & > * {
+        border-radius: 8px!important;
+        border: none;
+        outline: none;
+        padding: 3px;
+    }
+}

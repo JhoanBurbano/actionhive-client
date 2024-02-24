@@ -1,0 +1,23 @@
+.drop-images {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    &__view{
+        &-image{
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            margin: 5px;
+        }
+    }
+    &__drop {
+        border: 2px dashed #ccc;
+        border-radius: 16px;
+        padding: 40px 20px;
+        text-align: center;
+        cursor: pointer;
+        &.active {
+            background: #959595;
+        }
+    }
+}

@@ -1,0 +1,197 @@
+.dashboard {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  gap: 20px;
+  &__panel {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background: #ffffff;
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    box-shadow: 0 0 10px 2px #21212133;
+    padding: 20px;
+    overflow: auto;
+    &-cards {
+      display: flex;
+      justify-content: space-around;
+      width: 100%;
+      @media screen and (max-width: "850px") {
+        flex-direction: column;
+        gap: 10px;
+      }
+      &__item {
+        width: 200px;
+        height: 200px;
+        border-radius: 16px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: #33aa55;
+        color: white;
+        @media screen and (max-width: "850px") {
+          width: 100%;
+          height: 100px;
+        }
+        &:first-child {
+          background-color: #0e81ec;
+        }
+        &:last-child {
+          background-color: #eccb0e;
+        }
+        &-cantidad {
+          font-size: 40px;
+        }
+      }
+    }
+    &-create {
+      width: 100%;
+      &-button {
+        display: block;
+        padding: 10px;
+        margin: auto;
+        width: 200px;
+        border-radius: 16px;
+      }
+    }
+    &-tools {
+      width: 100%;
+      background-color: #33aa55;
+      padding: 10px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      @media screen and (max-width: "1133px") {
+        display: grid;
+        justify-items: stretch;
+      }
+      & > * {
+        & select {
+          @media screen and (max-width: "1133px") {
+            width: 100%;
+          }
+        }
+      }
+      &-search {
+        flex: 1;
+        min-width: 200px;
+        &-input {
+          width: 100%;
+        }
+      }
+      &-clear {
+        height: 100%;
+        padding: 5px;
+        border-radius: 8px;
+      }
+    }
+    &-swiper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      white-space: nowrap;
+      padding: 5px;
+      &__item {
+        max-width: 350px;
+        width: 100%;
+        min-height: 420px;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+        border-radius: 16px;
+        box-shadow: 0 0 10px 2px #21212122;
+        padding-bottom: 20px;
+        background-color: #212121;
+        color: white;
+        position: relative;
+        overflow: hidden;
+        margin: auto;
+        &:hover {
+          outline: 2px solid #33aa55;
+          cursor: pointer;
+        }
+        &-title {
+          position: absolute;
+          background: #212121aa;
+          width: 100%;
+          text-align: center;
+          padding: 5px;
+        }
+        &-images {
+          width: 100%;
+        }
+        &-description {
+          max-height: 50px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          display: -webkit-box;
+          -webkit-line-clamp: 3;
+          -webkit-box-orient: vertical;
+          word-wrap: break-word;
+          white-space: normal;
+          text-align: justify;
+          padding: 0 10px;
+        }
+        &-people {
+          width: 100%;
+          display: flex;
+          justify-content: space-around;
+        }
+        &-progress {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          &-title {
+            text-align: center;
+            font-weight: bold;
+          }
+        }
+        &-objetivo {
+          display: flex;
+          width: 100%;
+          text-align: center;
+          flex-direction: column;
+          gap: 5px;
+        }
+        &-actions {
+          width: 100%;
+          display: flex;
+          gap: 10px;
+          justify-content: space-evenly;
+          &-button {
+            display: block;
+            padding: 10px;
+            border-radius: 16px;
+          }
+        }
+      }
+    }
+    &-text {
+      width: 100%;
+      text-align: center;
+    }
+  }
+}
+
+.progress {
+  display: block;
+  width: 100%;
+  height: 20px;
+  background: #d9d9d9;
+  &-bar {
+    display: block;
+    height: 100%;
+    background-color: #33aa55;
+  }
+}
