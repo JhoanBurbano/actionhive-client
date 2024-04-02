@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import { useEffect, useState } from "react";
+import Graphs from "../Graphs/Graphs";
 
 const DashboardUser = () => {
   const isMobile = useSelector((state: RootState)=>state.ui.isMobile)
@@ -44,6 +45,10 @@ const DashboardUser = () => {
             <Link to={'/create-project'}>
             <button className="dashboard__panel-create-button">+ Nuevo Proyecto</button>
             </Link>
+        </section>
+        <h2>Graficas</h2>
+        <section>
+          <Graphs/>
         </section>
         <h2>Lista de proyectos</h2>
         <section className="dashboard__panel-tools">

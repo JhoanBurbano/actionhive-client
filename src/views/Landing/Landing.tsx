@@ -145,7 +145,7 @@ const Landing: React.FC = () => {
             <p>Registrate como inversor</p>
           </li>
         </ul>
-        <h1 className="landing-view__footer-logo">Action Hive</h1>
+        <img src="https://burbanostudio-assets.s3.us-east-2.amazonaws.com/projects/ActionHive/assets/action-hive_horizontal_ligth.png" className="landing-view__footer-logo"/>
         <p className="landing-view__footer-copy">© 2020 - 2024 ActionHive. Todos los derechos reservados</p>
       </footer>
     </section>

@@ -5,9 +5,7 @@ const TopBar = () => {
   return (
     <nav className="top-bar">
       <Link to={"/"}>
-        <p className="top-bar__logo">
-          <b>Action</b> Hive
-        </p>
+        <img src="https://burbanostudio-assets.s3.us-east-2.amazonaws.com/projects/ActionHive/assets/action-hive_horizontal.png" loading="lazy" alt="logo" className="top-bar__logo" />
       </Link>
       <ul className="top-bar__tools">
         <li className="top-bar__tools-item">¿Como Funciona?</li>

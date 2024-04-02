@@ -25,12 +25,12 @@ const UserPanel: React.FC = () => {
       <span className="user-panel__perfil">
         <h3>Informacion de Perfil</h3>
         <img
-          src="https://burbanostudio-assets.s3.us-east-2.amazonaws.com/assets/imgs/profile-white.jpg"
+          src="https://randomuser.me/api/portraits/men/4.jpg"
           alt="avatar"
           className="user-panel__perfil-image"
         />
-        <h3 className="user-panel__perfil-name">Jhoan Burbano</h3>
-        <p className="user-panel__perfil-email">jhoan@mail.com</p>
+        <h3 className="user-panel__perfil-name">John Smith</h3>
+        <p className="user-panel__perfil-email">john@mail.com</p>
         <i className="user-panel__perfil-rol">Postulante</i>
         <button className="user-panel__perfil-button">Editar Perfil</button>
       </span>

@@ -12,7 +12,10 @@
   "dependencies": {
     "@reduxjs/toolkit": "^2.1.0",
     "browser-image-compression": "^2.0.2",
+    "chart.js": "^4.4.2",
     "react": "^18.2.0",
+    "react-chartjs-2": "^5.2.0",
+    "react-d3-tree": "^3.6.2",
     "react-dom": "^18.2.0",
     "react-dropzone": "^14.2.3",
     "react-hook-form": "^7.50.0",
