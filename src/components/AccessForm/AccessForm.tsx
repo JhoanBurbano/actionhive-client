@@ -43,7 +43,6 @@ const AccessFrom: React.FC<AccessFormProps> = ({
     { value: "diseñador", label: "Diseñador" },
     { value: "agricultor", label: "Agricultor" },
   ];
-  const [selectedOption, setSelectedOption] = useState<Option>();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -70,15 +69,17 @@ const AccessFrom: React.FC<AccessFormProps> = ({
                       {label}
                     </label>
                     <Select
-                      defaultValue={selectedOption}
+                      defaultValue={options.find( opt => opt.value = field.value) || null}
                       onChange={(value) => {
-                        setSelectedOption(value as Option);
+                        console.log('value :>> ', value);
+                        field.onChange(value?.value || value?.label.toLowerCase());
                       }}
                       options={options}
                       isMulti={false}
                       className="multiselect-custom"
                       placeholder="Registrate como"
                     />
+                      <span>{invalid && error?.message}</span>
                     </>
                   ) : (
                     <span className="access-form__field">

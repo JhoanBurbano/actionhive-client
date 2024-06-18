@@ -4,18 +4,20 @@ import "swiper/css/pagination";
 import "./Dashboard.style.scss";
 import { UserPanel } from "../";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { RootState } from "../../redux/store";
-import { useEffect, useState } from "react";
-// import Graphs from "../Graphs/Graphs";
 
 const DashboardUser = () => {
-  const isMobile = useSelector((state: RootState)=>state.ui.isMobile)
-  const [itemsPerView, setItemsPerView] = useState<number>(3)
-  useEffect(()=>{
-    setItemsPerView(window.innerWidth < 600 ? 1 : window.innerWidth <= 1200 ? 2 : 3)
-    console.log(window.innerWidth)
-  }, [isMobile])
+  const breakpoints = {
+    320: {
+      slidesPerView: 1,
+      spaceBetween: 10,
+    },
+    850: {
+      slidesPerView: 2,
+      spaceBetween: 10,
+    },
+  };
+
+
   return (
     <div className="dashboard">
       <section className="dashboard__panel">
@@ -42,14 +44,10 @@ const DashboardUser = () => {
         </section>
         <h2>Crear un nuevo proyecto</h2>
         <section className="dashboard__panel-create">
-            <Link to={'/create-project'}>
+            <Link to={'create'}>
             <button className="dashboard__panel-create-button">+ Nuevo Proyecto</button>
             </Link>
         </section>
-        <h2>Graficas</h2>
-        {/* <section>
-          <Graphs/>
-        </section> */}
         <h2>Lista de proyectos</h2>
         <section className="dashboard__panel-tools">
           <span className="dashboard__panel-tools-search">
@@ -90,8 +88,7 @@ const DashboardUser = () => {
         </section>
         {true ? (
           <Swiper
-            slidesPerView={itemsPerView}
-            spaceBetween={30}
+            breakpoints={breakpoints}
             pagination={{
               clickable: true,
             }}

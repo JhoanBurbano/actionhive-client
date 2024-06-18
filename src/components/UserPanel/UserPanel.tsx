@@ -4,10 +4,12 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import { useAppDispatch } from "../../hooks/useDispatch.hook";
 import { thunkSignOut } from "../../redux/thunks/auth.thunk";
+import { selectUser } from "../../redux/slices/auth.slice";
 
 const UserPanel: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const isMobile = useSelector((state: RootState)=>state.ui.isMobile)
+  const user = useSelector(selectUser)
   const dispatch = useAppDispatch()
 
   function handleClick() {
@@ -32,14 +34,19 @@ const UserPanel: React.FC = () => {
         }
       <span className="user-panel__perfil">
         <h3>Informacion de Perfil</h3>
-        <img
+        <figure className="user-panel__perfil-image">
+          {
+            user?.avatar?.url ? <img src={user.avatar.url} alt="avatar" /> : <h2>{user?.avatar.initials}</h2>
+          }
+        </figure>
+        {/* <img
           src="https://randomuser.me/api/portraits/men/4.jpg"
           alt="avatar"
           className="user-panel__perfil-image"
-        />
-        <h3 className="user-panel__perfil-name">John Smith</h3>
-        <p className="user-panel__perfil-email">john@mail.com</p>
-        <i className="user-panel__perfil-rol">Postulante</i>
+        /> */}
+        <h3 className="user-panel__perfil-name">{`${user?.profile.firstname} ${user?.profile.lastname}`}</h3>
+        <p className="user-panel__perfil-email">{user?.profile.email}</p>
+        <i className="user-panel__perfil-rol">{user?.profile.rol}</i>
         <button className="user-panel__perfil-button">Editar Perfil</button>
       </span>
       <span className="user-panel__notificaciones">

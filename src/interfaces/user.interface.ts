@@ -1,5 +1,5 @@
 export interface User {
-  name: string;
+  firstname: string;
   lastname: string;
   email: string;
   password: string;
@@ -43,4 +43,4 @@ export interface UserProfile {
   }
 }
 
-export type RegisterData = Pick<User, "name" | "email" | "password" | "rol" | "lastname">;
+export type RegisterData = Pick<User, "firstname" | "email" | "password" | "rol" | "lastname">;

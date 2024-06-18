@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom";
 import "./TopBar.scss";
+import { useSelector } from "react-redux";
+import { selectUser } from "../../redux/slices/auth.slice";
 
 const TopBar = () => {
+  const user = useSelector(selectUser);
+
   return (
     <nav className="top-bar">
       <Link to={"/"}>
@@ -13,14 +17,24 @@ const TopBar = () => {
         <li className="top-bar__tools-item">F.A.Q</li>
         <li className="top-bar__tools-item">Negocio</li>
       </ul>
-      <span className="top-bar__access">
-        <Link to={"/login"}>
-            <button className="top-bar__access-button outline">Login</button>
-        </Link>
-        <Link to={"/register"}>
-            <button className="top-bar__access-button outline">Register</button>
-        </Link>
-      </span>
+          <span className="top-bar__access">
+      {
+        user === null ? (
+          <>
+          <Link to={"/login"}>
+              <button className="top-bar__access-button outline">Login</button>
+          </Link>
+          <Link to={"/register"}>
+              <button className="top-bar__access-button outline">Register</button>
+          </Link>
+          </>
+        ) : (
+          <Link to={"/dashboard"}>
+              <button className="top-bar__access-button outline">Dashboard</button>
+          </Link>
+        )
+      }
+        </span>
     </nav>
   );
 };

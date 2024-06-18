@@ -12,13 +12,14 @@ const Register = () => {
         defaultValues: {
             email: '',
             password: '',
-            name: '',
+            firstname: '',
             lastname: '',
             rol: ''
         }
     })
 
     const onSubmit = async () => {
+        console.log('onSubmit')
         const submit = handleSubmit((data: RegisterData)=>{
             console.log('data :>> ', data);
             dispatch(thunkSignUpWithEmailAndPassword(data))
@@ -32,7 +33,7 @@ const Register = () => {
         description="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi deleniti vel tempore quam cumque nam."
         control={control}
         fields={[
-            {label: 'Nombre', placeholder: 'Nombre', type: 'name'},
+            {label: 'Nombre', placeholder: 'Nombre', type: 'firstname'},
             {label: 'Apellido', placeholder: 'Apellido', type: 'lastname'},
             {label: 'Rol', placeholder: 'Rol', type: 'rol'},
             {label: 'Correo', placeholder: 'Correo', type: 'email'},
