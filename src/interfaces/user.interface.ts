@@ -1,8 +1,9 @@
 export interface User {
   name: string;
+  lastname: string;
   email: string;
   password: string;
-  rol: "user" | "inversor" | "admin";
+  rol: string;
 }
 
 export interface LoginData {
@@ -33,4 +34,13 @@ export interface Project {
   projectImages?: string[];
 }
 
-export type RegisterData = Pick<User, "name" | "email" | "password" | "rol">;
+
+export interface UserProfile {
+  profile: User;
+  avatar: {
+    url: string;
+    initials: string;
+  }
+}
+
+export type RegisterData = Pick<User, "name" | "email" | "password" | "rol" | "lastname">;

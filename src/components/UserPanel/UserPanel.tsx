@@ -2,14 +2,22 @@ import { useState } from "react";
 import "./UserPanel.style.scss";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
+import { useAppDispatch } from "../../hooks/useDispatch.hook";
+import { thunkSignOut } from "../../redux/thunks/auth.thunk";
 
 const UserPanel: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const isMobile = useSelector((state: RootState)=>state.ui.isMobile)
+  const dispatch = useAppDispatch()
 
   function handleClick() {
     setIsOpen(v => !v)
   }
+
+  const logout = () => {
+    dispatch(thunkSignOut())
+  }
+
   return (
     <>
     {
@@ -90,6 +98,7 @@ const UserPanel: React.FC = () => {
           </li>
         </ul>
       </span>
+      <button className="user-panel__logout" onClick={logout}>Cerrar Sesion</button>
     </aside>
     </>
   );

@@ -1,0 +1,38 @@
+.not-found__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    background-color: #f4f4f4;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    flex-direction: column;
+    &-title {
+        font-size: 6rem;
+        margin-bottom: 20px;
+    }
+    &-description {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+    }
+    &-button {
+        padding: 10px 20px;
+        background-color: #61f179;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        &:hover {
+            color: #fff;
+            background-color: #194650;
+        }
+    }
+}

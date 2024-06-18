@@ -84,6 +84,13 @@
         }
       }
     }
+    &__logout {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      padding: 10px;
+      border-radius: 16px;
+    }
   }
 
   .user-action {

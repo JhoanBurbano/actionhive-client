@@ -4,10 +4,10 @@ import { useDispatch } from "react-redux";
 import { setOverflow } from "../../redux/slices/ui.slice";
 
 interface DashboardProps {
-  type: string;
+  type?: string;
 }
 
-const Dashboard: React.FC<DashboardProps> = ({ type }) => {
+const Dashboard: React.FC<DashboardProps> = ({ type = "user" }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
