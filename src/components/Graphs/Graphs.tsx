@@ -85,112 +85,112 @@
 // }
 
 // export default Graphs
-import Chart, { CategoryScale } from "chart.js/auto";
-import { useEffect, useState } from "react";
-import { Scatter } from "react-chartjs-2";
-import HierarchicalGraph from "./Hierarchical";
-import Bars from "./Bars";
-import Radar from "./Radar";
+// import Chart, { CategoryScale } from "chart.js/auto";
+// import { useEffect, useState } from "react";
+// import { Scatter } from "react-chartjs-2";
+// import HierarchicalGraph from "./Hierarchical";
+// import Bars from "./Bars";
+// import Radar from "./Radar";
 
-Chart.register(CategoryScale);
+// Chart.register(CategoryScale);
 
-const ScatterPlot = () => {
+// const ScatterPlot = () => {
 
-    const [data, setData] = useState<any>({
-        datasets: [
-          {
-            label: "Cluster 1",
-            data: [],
-            backgroundColor: "rgba(255, 0, 0, 0.9)",
-          },
-          {
-            label: "Cluster 2",
-            data: [],
-            backgroundColor: "rgba(0, 255, 0, 0.9)",
-          },
-          {
-            label: "Cluster 3",
-            data: [],
-            backgroundColor: "rgba(0, 0, 255, 0.9)",
-          },
-      {
-        label: 'Centroids',
-        data: [],
-        backgroundColor: 'rgba(0, 0, 0, 1)',
-        pointRadius: 10,
-        pointStyle: 'triangle',
-      },
-        ],
-      })
+//     const [data, setData] = useState<any>({
+//         datasets: [
+//           {
+//             label: "Cluster 1",
+//             data: [],
+//             backgroundColor: "rgba(255, 0, 0, 0.9)",
+//           },
+//           {
+//             label: "Cluster 2",
+//             data: [],
+//             backgroundColor: "rgba(0, 255, 0, 0.9)",
+//           },
+//           {
+//             label: "Cluster 3",
+//             data: [],
+//             backgroundColor: "rgba(0, 0, 255, 0.9)",
+//           },
+//       {
+//         label: 'Centroids',
+//         data: [],
+//         backgroundColor: 'rgba(0, 0, 0, 1)',
+//         pointRadius: 10,
+//         pointStyle: 'triangle',
+//       },
+//         ],
+//       })
 
-  const [clusters, setClusters] = useState<any>([]);
+//   const [clusters, setClusters] = useState<any>([]);
 
-  useEffect(() => {
-    // Fetch data from API
-    async function fetchData() {
-        const _data = data;
-      const response = await (await fetch("http://localhost:3000/")).json();
-      setClusters(response.clusters);
-      response.clusters.projects.forEach((project: any) => {
-        const clusterData = {
-          x: project.fundingCap,
-          y: project.developmentStatus,
-          title: project.projectName,
-        };
-        _data.datasets[project.cluster].data.push(clusterData);
-      });
+//   useEffect(() => {
+//     // Fetch data from API
+//     async function fetchData() {
+//         const _data = data;
+//       const response = await (await fetch("http://localhost:3000/")).json();
+//       setClusters(response.clusters);
+//       response.clusters.projects.forEach((project: any) => {
+//         const clusterData = {
+//           x: project.fundingCap,
+//           y: project.developmentStatus,
+//           title: project.projectName,
+//         };
+//         _data.datasets[project.cluster].data.push(clusterData);
+//       });
 
-        response.clusters.centroids.forEach((centroid: any) => {
-            const centroidData = {
-            x: centroid[0],
-            y: centroid[1],
-            };
-            _data.datasets[3].data.push(centroidData);
-        });
+//         response.clusters.centroids.forEach((centroid: any) => {
+//             const centroidData = {
+//             x: centroid[0],
+//             y: centroid[1],
+//             };
+//             _data.datasets[3].data.push(centroidData);
+//         });
 
-      console.log('data :>> ', _data);
-      setData(_data);
-    }
-    fetchData();
-  }, []);
+//       console.log('data :>> ', _data);
+//       setData(_data);
+//     }
+//     fetchData();
+//   }, []);
 
-  // Extracting data from API response
+//   // Extracting data from API response
 
-  if(!clusters || !clusters.centroids) return <div>Loading...</div>
+//   if(!clusters || !clusters.centroids) return <div>Loading...</div>
 
-  return (
-    <div style={{ width: "50%", content: clusters.length }}>
-      <Scatter
-        data={data}
-        options={{
-          scales: {
-            x: {
-              type: "linear",
-              position: "bottom",
-            },
-            y: {
-              type: "linear",
-              position: "left",
-              min: 0,
-              max: 1,
-            },
-          },
-          plugins: {
-            tooltip: {
-              callbacks: {
-                label: function(context: any) {
-                  return context.dataset.data[context.dataIndex].title; // Mostrar el título del proyecto como etiqueta
-                }
-              }
-            }
-          },
-        }}
-      />
-      <Radar/>
-      <HierarchicalGraph />
-      <Bars />
-    </div>
-  );
-};
+//   return (
+//     <div style={{ width: "50%", content: clusters.length }}>
+//       <Scatter
+//         data={data}
+//         options={{
+//           scales: {
+//             x: {
+//               type: "linear",
+//               position: "bottom",
+//             },
+//             y: {
+//               type: "linear",
+//               position: "left",
+//               min: 0,
+//               max: 1,
+//             },
+//           },
+//           plugins: {
+//             tooltip: {
+//               callbacks: {
+//                 label: function(context: any) {
+//                   return context.dataset.data[context.dataIndex].title; // Mostrar el título del proyecto como etiqueta
+//                 }
+//               }
+//             }
+//           },
+//         }}
+//       />
+//       <Radar/>
+//       <HierarchicalGraph />
+//       <Bars />
+//     </div>
+//   );
+// };
 
-export default ScatterPlot;
+// export default ScatterPlot;
