@@ -2,7 +2,7 @@ import { Outlet } from 'react-router-dom'
 
 const DashboardRouter = () => {
   return (
-    <div>
+    <div style={{width: "100%"}}>
         <Outlet />
     </div>
   )

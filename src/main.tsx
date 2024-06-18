@@ -14,6 +14,7 @@ import { store } from "./redux/store.ts";
 import ProtectedRoute from "./components/Protected/ProtectedRoute.tsx";
 import DashboardRouter from "./views/DashboardRouter/DashboardRouter.tsx";
 import NotFound from "./components/NotFound/NotFound.tsx";
+import ForgotPassword from "./views/Access/ForgotPassword.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <Provider store={store}>
@@ -23,6 +24,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
           <Route index element={<Landing />} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
+          <Route path="forgot-password" element={<ForgotPassword />} />
           <Route
             path="dashboard"
             element={

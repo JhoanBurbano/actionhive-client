@@ -27,11 +27,6 @@ const ProyectoForm = () => {
           control={control}
           render={({ field }) => (
             <>
-              {/* <input
-                className="create-form__field-input"
-                {...field}
-                type="text"
-              /> */}
               <DropImages onSave={(images)=> field.onChange(images)}/>
               <span className="create-form__field-error">
                 {errors.images?.message as ReactNode}

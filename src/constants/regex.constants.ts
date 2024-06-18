@@ -1,0 +1,15 @@
+export const EMAIL_REGEX =  /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(com|org|net|info|biz|mx|gob|edu|gov|mil|co|us|uk|ca|de|fr|es|it|ru|ch|nl|pe|ar|cl|me|se|no|fi|dk|pl|eu|au|jp|cn|br|in|za)$/;
+export const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/;
+export const NAME_REGEX = /^[a-zA-Z\s]*$/;
+export const PHONE_REGEX = /^\d{10}$/;
+export const NUMBER_REGEX = /^[0-9]*$/;
+export const URL_REGEX = /^(http|https):\/\/[^ "]+$/;
+export const DATE_REGEX = /^\d{4}-\d{2}-\d{2}$/;
+export const TIME_REGEX = /^([01]?[0-9]|2[0-3]):[0-5][0-9]$/;
+export const CURRENCY_REGEX = /^\d+(\.\d{1,2})?$/;
+export const ALPHANUMERIC_REGEX = /^[a-zA-Z0-9]*$/;
+export const ALPHANUMERICSPACE_REGEX = /^[a-zA-Z0-9\s]*$/;
+export const ALPHANUMERICDASH_REGEX = /^[a-zA-Z0-9-]*$/;
+export const ALPHANUMERICDOT_REGEX = /^[a-zA-Z0-9.]*$/;
+export const ALPHANUMERICUNDERSCORE_REGEX = /^[a-zA-Z0-9_]*$/;
+export const ALPHANUMERICDASHUNDERSCORE_REGEX = /^[a-zA-Z0-9-_]*$/;

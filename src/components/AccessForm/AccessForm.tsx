@@ -1,11 +1,12 @@
 import { Link, useNavigate } from "react-router-dom";
-import { Field, Option } from "../../interfaces/forms.interfaces";
+import { Field } from "../../interfaces/forms.interfaces";
 import Select from "react-select";
 import "./AccessForm.style.scss";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Control, Controller } from "react-hook-form";
 import { selectUser } from "../../redux/slices/auth.slice";
 import { useSelector } from "react-redux";
+import CheckPassword from "../Organisms/CheckPassword";
 
 interface AccessFormProps {
   title: string;
@@ -64,7 +65,7 @@ const AccessFrom: React.FC<AccessFormProps> = ({
               render={({ field, fieldState: { invalid, error } }) => (
                 <>
                   {type === "rol" ? (
-                    <>
+                    <span className="access-form__field">
                     <label className="access-form__field-label">
                       {label}
                     </label>
@@ -80,7 +81,7 @@ const AccessFrom: React.FC<AccessFormProps> = ({
                       placeholder="Registrate como"
                     />
                       <span>{invalid && error?.message}</span>
-                    </>
+                    </span>
                   ) : (
                     <span className="access-form__field">
                       <label className="access-form__field-label">
@@ -92,7 +93,14 @@ const AccessFrom: React.FC<AccessFormProps> = ({
                         className="access-form__field-input"
                         {...field}
                       />
-                      <span>{invalid && error?.message}</span>
+                      {
+                        type !== 'password' && <span className="access-form__field-error">{invalid && error?.message}</span>
+                        }
+                      {
+                        type === "password" && !isLogin && (
+                          <CheckPassword password={field.value} />
+                        )
+                      }
                       {type === "password" && isLogin && (
                         <Link
                           to={"/forgot-password"}

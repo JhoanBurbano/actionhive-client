@@ -6,6 +6,9 @@ import { RootState } from './redux/store'
 import { useEffect } from 'react'
 import { setIsMobile } from './redux/slices/ui.slice'
 import { Loader } from './components'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.min.css';
+
 
 function App() {
   const {fullTemplate, overflow, isWhiteBackground, loader} = useSelector((state: RootState)=>state.ui)
@@ -27,6 +30,7 @@ function App() {
   }, []);
   return (
     <div className='viewport'>
+      <ToastContainer />
       {
         loader && <Loader/>
       }

@@ -8,7 +8,7 @@ const TopBar = () => {
 
   return (
     <nav className="top-bar">
-      <Link to={"/"}>
+      <Link to={!user ? "/" : "/dashboard"}>
         <img src="https://burbanostudio-assets.s3.us-east-2.amazonaws.com/projects/ActionHive/assets/action-hive_horizontal.png" loading="lazy" alt="logo" className="top-bar__logo" />
       </Link>
       <ul className="top-bar__tools">
