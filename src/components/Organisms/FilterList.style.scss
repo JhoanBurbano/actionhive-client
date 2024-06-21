@@ -1,0 +1,42 @@
+.filters {
+    width: 100%;
+    background-color: #33aa55;
+    padding: 10px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    @media screen and (max-width: "1133px") {
+      display: grid;
+      justify-items: stretch;
+    }
+    &-title {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        &-reload {
+            background: transparent;
+            padding: 10px;
+            border-radius: 8px;
+        }
+    }
+    & > * {
+      & select {
+        @media screen and (max-width: "1133px") {
+          width: 100%;
+        }
+      }
+    }
+    &-search {
+      flex: 1;
+      min-width: 200px;
+      &-input {
+        width: 100%;
+      }
+    }
+    &-clear {
+      height: 100%;
+      padding: 5px;
+      border-radius: 8px;
+    }
+  }

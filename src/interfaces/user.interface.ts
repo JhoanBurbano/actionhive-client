@@ -12,6 +12,7 @@ export interface LoginData {
 }
 
 export interface Project {
+  id: string;
   projectName?: string;
   projectCategory?: string;
   fundingCap?: number;
@@ -32,7 +33,11 @@ export interface Project {
   description?: string;
   isActive?: boolean;
   projectImages?: string[];
+  representant?: Omit<User, "password">;
+  team: Omit<User, "password">[]
 }
+
+export type ProjectData = Omit<Project, "id" | "representant" | "team">;
 
 
 export interface UserProfile {

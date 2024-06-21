@@ -6,7 +6,7 @@ export const NUMBER_REGEX = /^[0-9]*$/;
 export const URL_REGEX = /^(http|https):\/\/[^ "]+$/;
 export const DATE_REGEX = /^\d{4}-\d{2}-\d{2}$/;
 export const TIME_REGEX = /^([01]?[0-9]|2[0-3]):[0-5][0-9]$/;
-export const CURRENCY_REGEX = /^\d+(\.\d{1,2})?$/;
+export const CURRENCY_REGEX = /\B(?=(\d{3})+(?!\d))/g;
 export const ALPHANUMERIC_REGEX = /^[a-zA-Z0-9]*$/;
 export const ALPHANUMERICSPACE_REGEX = /^[a-zA-Z0-9\s]*$/;
 export const ALPHANUMERICDASH_REGEX = /^[a-zA-Z0-9-]*$/;

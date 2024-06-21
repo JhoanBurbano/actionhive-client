@@ -12,20 +12,22 @@ import {
 import storage from 'redux-persist/lib/storage';
 import uiSlice, { UIState } from '../redux/slices/ui.slice.ts';
 import authSlice, { AuthState } from './slices/auth.slice.ts';
+import projectSlice, { ProjectState } from './slices/projects.slice.ts';
 
 const persistConfig = {
   key: 'root',
   version: 1,
   storage,
-  whitelist: ['auth'],
+  whitelist: ['auth', 'project'],
 };
 
 const rootReducer = combineReducers({
   ui: uiSlice,
+  project: projectSlice,
   auth: authSlice,
 });
 
-const persistedReducer = persistReducer(persistConfig, rootReducer);
+const persistedReducer = persistReducer<CombinedState>(persistConfig, rootReducer);
 
 export const store = configureStore({
   reducer: persistedReducer,
@@ -44,4 +46,5 @@ export type AppDispatch = typeof store.dispatch;
 export type CombinedState = {
   ui: UIState;
   auth: AuthState;
+  project: ProjectState;
 };

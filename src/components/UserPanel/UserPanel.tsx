@@ -1,15 +1,14 @@
 import { useState } from "react";
 import "./UserPanel.style.scss";
-import { useSelector } from "react-redux";
-import { RootState } from "../../redux/store";
 import { useAppDispatch } from "../../hooks/useDispatch.hook";
 import { thunkSignOut } from "../../redux/thunks/auth.thunk";
-import { selectUser } from "../../redux/slices/auth.slice";
+import { selectUser } from "../../redux/selectors/auth.selectors";
+import { selectMobile } from "../../redux/selectors/ui.selectors";
 
 const UserPanel: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const isMobile = useSelector((state: RootState)=>state.ui.isMobile)
-  const user = useSelector(selectUser)
+  const isMobile = selectMobile();
+  const user = selectUser();
   const dispatch = useAppDispatch()
 
   function handleClick() {

@@ -4,9 +4,8 @@ import Select from "react-select";
 import "./AccessForm.style.scss";
 import { useEffect } from "react";
 import { Control, Controller } from "react-hook-form";
-import { selectUser } from "../../redux/slices/auth.slice";
-import { useSelector } from "react-redux";
 import CheckPassword from "../Organisms/CheckPassword";
+import { selectAuthState } from "../../redux/selectors/auth.selectors";
 
 interface AccessFormProps {
   title: string;
@@ -26,12 +25,14 @@ const AccessFrom: React.FC<AccessFormProps> = ({
   onSubmit,
 }) => {
 
-  const user = useSelector(selectUser);
+  const { user, token } = selectAuthState();
 
   const navigation = useNavigate();
 
+
   useEffect(() => {
-    if (user !== null) {
+    console.log('user, token :>> ', user, token);
+    if (user !== null && token !== null) {
       navigation("/dashboard");
     }
   }, [user]);

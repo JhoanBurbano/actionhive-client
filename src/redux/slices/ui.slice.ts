@@ -12,7 +12,7 @@ export interface UIState {
 const initialState: UIState = {
   fullTemplate: false,
   loader: false,
-  overflow: false,
+  overflow: true,
   isWhiteBackground: false,
   isMobile: false,
 };

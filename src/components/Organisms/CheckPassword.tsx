@@ -30,8 +30,8 @@ const CheckPassword: React.FC<CheckPasswordProps> = ({password}) => {
   return (
     <div className="check">
         {
-            sentences.map(({condition, text}) => (
-                <span className="check__item">
+            sentences.map(({condition, text}, i) => (
+                <span className="check__item" key={i}>
                     <h2 className="check__item-icon">{!condition() ? '✖️' : '👍'}</h2>
                     <p className="check__item-text">{text}</p>
                 </span>

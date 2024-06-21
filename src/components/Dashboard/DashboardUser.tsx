@@ -1,22 +1,15 @@
-import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "./Dashboard.style.scss";
 import { UserPanel } from "../";
 import { Link } from "react-router-dom";
+import ProjectsViewer from "../Organisms/ProjectsViewer";
+import { selectUserProjects } from "../../redux/selectors/project.selector";
+import FilterList from "../Organisms/FilterList";
 
 const DashboardUser = () => {
-  const breakpoints = {
-    320: {
-      slidesPerView: 1,
-      spaceBetween: 10,
-    },
-    850: {
-      slidesPerView: 2,
-      spaceBetween: 10,
-    },
-  };
 
+  const projects = selectUserProjects();
 
   return (
     <div className="dashboard">
@@ -48,107 +41,8 @@ const DashboardUser = () => {
             <button className="dashboard__panel-create-button">+ Nuevo Proyecto</button>
             </Link>
         </section>
-        <h2>Lista de proyectos</h2>
-        <section className="dashboard__panel-tools">
-          <span className="dashboard__panel-tools-search">
-            <input
-              type="text"
-              placeholder="Buscar por nombre de proyecto"
-              className="dashboard__panel-tools-search-input"
-            />
-          </span>
-          <span className="dashboard__panel-tools-order">
-            <select
-              className="dashboard__panel-tools-order-salect"
-              defaultValue={""}
-            >
-              <option value="" disabled>
-                Ordenar por
-              </option>
-              <option value="A-Z">Orden alfabetico Ascendente</option>
-              <option value="Z-A">Orden alfabetico Descendente</option>
-            </select>
-          </span>
-          <span className="dashboard__panel-tools-filters">
-            <select
-              className="dashboard__panel-tools-filters-salect"
-              defaultValue={""}
-            >
-              <option value="" disabled>
-                Filtrar por estado de proyecto
-              </option>
-              <option value="A-Z">Proyectos Postulados</option>
-              <option value="Z-A">Proyectos Financiados</option>
-              <option value="Z-A">Proyectos Pendientes</option>
-            </select>
-          </span>
-          <button className="dashboard__panel-tools-clear">
-            Limpiar Filtros
-          </button>
-        </section>
-        {true ? (
-          <Swiper
-            breakpoints={breakpoints}
-            pagination={{
-              clickable: true,
-            }}
-            className="dashboard__panel-swiper"
-          >
-            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((n) => (
-              <SwiperSlide key={n}>
-                <article className="dashboard__panel-swiper__item">
-                  <h3 className="dashboard__panel-swiper__item-title">
-                    Sistema de gestion de riego
-                  </h3>
-                  <img
-                    src="https://gerens.pe/blog/wp-content/uploads/2016/08/gestion-riesgo-e1631895272455.jpg"
-                    alt=""
-                    className="dashboard__panel-swiper__item-images"
-                  />
-                  <p className="dashboard__panel-swiper__item-description">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Ratione inventore sit, esse iure optio eius dolorem enim
-                    laudantium dolor minima natus omnis non mollitia voluptas.
-                    Earum dolores beatae consectetur facilis! Aliquid porro ut
-                    eius rerum labore consectetur minima aspernatur molestiae
-                    eligendi similique deleniti quibusdam nulla itaque dicta
-                    delectus unde quaerat nisi, neque iure fugiat. Quam
-                    similique ratione temporibus iste earum.
-                  </p>
-                  <section className="dashboard__panel-swiper__item-people">
-                    <span className="dashboard__panel-swiper__item-people-item">
-                      <h3>Representante</h3>
-                      <p>Jhoan Burbano</p>
-                    </span>
-                    <span className="dashboard__panel-swiper__item-people-item">
-                      <h3>Inversionistas</h3>
-                      <p>2 Interesados</p>
-                    </span>
-                  </section>
-                  <span className="dashboard__panel-swiper__item-progress">
-                    <p className="dashboard__panel-swiper__item-progress-title">
-                      Progreso
-                    </p>
-                    <span className="progress">
-                      <span
-                        className="progress-bar"
-                        style={{ width: (n > 9 ? "100" : n * 10) + "%" }}
-                      ></span>
-                    </span>
-                  </span>
-                  <span className="dashboard__panel-swiper__item-objetivo">
-                    <h3>Objetivo financiero</h3>
-                    <p>COP $35'000.000</p>
-                  </span>
-                </article>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        ) : (
-          <section className="dashboard__panel-text">
-            No tienes proyectos
-          </section>
-        )}
+        <FilterList/>
+        <ProjectsViewer projects={projects || []}/>
       </section>
       <UserPanel/>
     </div>

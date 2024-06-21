@@ -1,10 +1,9 @@
 import { Link } from "react-router-dom";
 import "./TopBar.scss";
-import { useSelector } from "react-redux";
-import { selectUser } from "../../redux/slices/auth.slice";
+import { selectUser } from "../../redux/selectors/auth.selectors";
 
 const TopBar = () => {
-  const user = useSelector(selectUser);
+  const user = selectUser();
 
   return (
     <nav className="top-bar">
