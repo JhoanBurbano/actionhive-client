@@ -1,9 +1,9 @@
 import axios from "axios";
-import { getToken } from "./localstorage";
+import { getToken, purgePersist } from "./localstorage";
 
     axios.interceptors.request.use(
-        (config) => {
-            const token = getToken();
+        async (config) => {
+            const token = await getToken();
           if (token) {
             config.headers.Authorization = `Bearer ${token}`;
           }
@@ -14,4 +14,17 @@ import { getToken } from "./localstorage";
         }
       );
 
+      axios.interceptors.response.use(
+        (response) => {
+          return response;
+        },
+        (error) => {
+          console.log('error :>> ', error);
+          if (error.response?.status === 403 ) {
+            console.log('error :>> ', error);
+            purgePersist();
+          }
+          return Promise.reject(error);
+        }
+      );
 export default axios;

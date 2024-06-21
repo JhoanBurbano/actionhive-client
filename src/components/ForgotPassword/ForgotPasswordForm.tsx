@@ -18,7 +18,6 @@ const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = () => {
   });
 
   const onSubmit = async (data: { email: string }) => {
-    console.log("data :>> ", data);
     try {
       await forgotPassword(data.email);
       setTokenSent(true);

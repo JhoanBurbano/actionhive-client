@@ -22,7 +22,6 @@ const ChangePassword: React.FC<ChangePasswordProps> = ({
   const navigate = useNavigate();
 
   const onSubmit = async (data: { password: string }) => {
-    console.log("data :>> ", data);
     try {
       await changePassword(data.password, token);
       navigate("/login");

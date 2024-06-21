@@ -2,11 +2,13 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { login, register } from "../../services/auth.service";
 import { RegisterData, LoginData } from "../../interfaces/user.interface";
 import { setLoader } from "../slices/ui.slice";
+import { purgePersist } from "../../utils/localstorage";
 
 export const thunkSignOut = createAsyncThunk('auth/signOut', async (_, { dispatch }) => {
   try {
     dispatch(setLoader(true));
     // await AuthService.signOut();
+    purgePersist();
     dispatch(setLoader(false));
   } catch (error) {
     dispatch(setLoader(false));

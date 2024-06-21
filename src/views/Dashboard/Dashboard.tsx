@@ -14,7 +14,7 @@ const Dashboard: React.FC<DashboardProps> = ({ type = "user" }) => {
   const userProjects = selectUserProjects();
 
   useEffect(() => {
-    if(!userProjects){
+    if(userProjects === null){
       dispatch(thunkGetUserProjects())
     }
     dispatch(setOverflow(true));

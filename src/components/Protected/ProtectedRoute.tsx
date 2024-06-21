@@ -8,7 +8,6 @@ interface ProtectedRouteProps {
 
 const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
   const user = selectUser();
-  console.log('user :>> ', user);
   const navigation = useNavigate();
 
   useEffect(() => {

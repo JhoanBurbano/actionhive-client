@@ -8,7 +8,7 @@ const Login = () => {
 
     const dispatch = useAppDispatch()
 
-    const {control, handleSubmit} = useForm<LoginData>({
+    const {control, handleSubmit, setValue} = useForm<LoginData>({
         defaultValues: {
             email: '',
             password: ''
@@ -17,8 +17,8 @@ const Login = () => {
 
     const onSubmit = async () => {
         const submit = handleSubmit((data: LoginData)=>{
-            console.log('data :>> ', data);
             dispatch(thunkSignInWithEmailAndPassword(data))
+            setValue('password', '')
         })
         submit()
     }
@@ -30,7 +30,7 @@ const Login = () => {
         control={control}
         fields={[
             {label: 'Correo', placeholder: 'Correo', type: 'email'},
-            {label: 'Contraseña', placeholder: 'Contraseña', type: 'password'}
+            {label: 'Contraseña', placeholder: 'Contraseña', type: 'password', rules: {minLength: {value: 8, message: 'La contraseña debe tener al menos 6 caracteres'}}},
         ]}
         isLogin={true}
         onSubmit={onSubmit}

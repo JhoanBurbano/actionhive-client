@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { Project } from '../../interfaces/user.interface.js';
 import { thunkGetProject, thunkGetProjects, thunkGetUserProjects, thunkUpdateProject } from '../thunks/project.thunk.js';
+import { thunkSignOut } from '../thunks/auth.thunk.js';
 
 export interface ProjectState {
   projects: Project[] | null;
@@ -34,6 +35,11 @@ export const projectSlice = createSlice({
     .addCase(thunkUpdateProject.fulfilled, (state, action) => {
       state.projectView = action.payload
     })
+    .addCase(thunkSignOut.fulfilled, (state) => {
+      state.projects = null;
+      state.userProjects = null;
+      state.projectView = null;
+    });
   },
 });
 

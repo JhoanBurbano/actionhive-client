@@ -31,7 +31,6 @@ const AccessFrom: React.FC<AccessFormProps> = ({
 
 
   useEffect(() => {
-    console.log('user, token :>> ', user, token);
     if (user !== null && token !== null) {
       navigation("/dashboard");
     }
@@ -50,19 +49,19 @@ const AccessFrom: React.FC<AccessFormProps> = ({
     e.preventDefault();
     onSubmit?.();
   };
-
+  
   return (
     <form className="access-form" onSubmit={handleSubmit}>
       <h3 className="access-form__title">{title}</h3>
       <p className="access-form__description">{description}</p>
       {
         <>
-          {fields.map(({ label, placeholder, type }, index) => (
+          {fields.map(({ label, placeholder, type, rules = {} }, index) => (
             <Controller
               key={index}
               name={type}
               control={control}
-              rules={{ required: "Este campo es requerido" }}
+              rules={{ required: "Este campo es requerido", ...rules}}
               render={({ field, fieldState: { invalid, error } }) => (
                 <>
                   {type === "rol" ? (
@@ -81,7 +80,7 @@ const AccessFrom: React.FC<AccessFormProps> = ({
                       className="multiselect-custom"
                       placeholder="Registrate como"
                     />
-                      <span>{invalid && error?.message}</span>
+                      <span className="access-form__field-error">{invalid && error?.message}</span>
                     </span>
                   ) : (
                     <span className="access-form__field">
@@ -95,7 +94,7 @@ const AccessFrom: React.FC<AccessFormProps> = ({
                         {...field}
                       />
                       {
-                        type !== 'password' && <span className="access-form__field-error">{invalid && error?.message}</span>
+                        (type !== 'password' || isLogin) && <span className="access-form__field-error">{invalid && error?.message}</span>
                         }
                       {
                         type === "password" && !isLogin && (
