@@ -51,6 +51,9 @@
           object-fit: cover;
         }
       }
+      &-rol {
+        text-transform: capitalize;
+      }
       &-button {
         padding: 10px;
         border-radius: 16px;

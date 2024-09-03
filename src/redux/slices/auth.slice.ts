@@ -3,6 +3,7 @@ import {
   thunkSignInWithEmailAndPassword,
   thunkSignOut,
   thunkSignUpWithEmailAndPassword,
+  thunkUpdateProfile,
 } from "../thunks/auth.thunk.js";
 import { UserProfile } from "../../interfaces/user.interface.js";
 import { RootState } from "../store.js";
@@ -34,6 +35,10 @@ export const authSlice = createSlice({
       .addCase(thunkSignOut.fulfilled, (state) => {
         state.user = null;
         state.token = null;
+      })
+      .addCase(thunkUpdateProfile.fulfilled, (state, action) => {
+        console.log(action.payload!.user)
+        state.user = action.payload!.user;
       });
   },
 });

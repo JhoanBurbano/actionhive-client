@@ -10,12 +10,12 @@ const TopBar = () => {
       <Link to={!user ? "/" : "/dashboard"}>
         <img src="https://burbanostudio-assets.s3.us-east-2.amazonaws.com/projects/ActionHive/assets/action-hive_horizontal.png" loading="lazy" alt="logo" className="top-bar__logo" />
       </Link>
-      <ul className="top-bar__tools">
+      {user===null&&<ul className="top-bar__tools">
         <li className="top-bar__tools-item">¿Como Funciona?</li>
         <li className="top-bar__tools-item">Contacto</li>
         <li className="top-bar__tools-item">F.A.Q</li>
         <li className="top-bar__tools-item">Negocio</li>
-      </ul>
+      </ul>}
           <span className="top-bar__access">
       {
         user === null ? (

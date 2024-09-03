@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { login, register } from "../../services/auth.service";
+import { login, register, updateProfile } from "../../services/auth.service";
 import { RegisterData, LoginData } from "../../interfaces/user.interface";
 import { setLoader } from "../slices/ui.slice";
 import { purgePersist } from "../../utils/localstorage";
@@ -50,6 +50,23 @@ export const thunkSignInWithEmailAndPassword = createAsyncThunk(
       console.log("error :>> ", error);
       dispatch(setLoader(false))
       return { user: null, token: null}
+    }
+  }
+);
+
+
+export const thunkUpdateProfile = createAsyncThunk(
+  "auth/updateProfile",
+  async ({data, isInvestor}: {data: RegisterData, isInvestor: boolean}, { dispatch }) => {
+    try {
+      dispatch(setLoader(true));
+      const user = await updateProfile(data, isInvestor);
+      dispatch(setLoader(false));
+      console.log({ userThunk: user})
+      return user;
+    } catch (error) {
+      dispatch(setLoader(false));
+      return { user: null }
     }
   }
 );

@@ -6,36 +6,45 @@ import "./UserEdit.scss";
 import { Controller, useForm } from "react-hook-form";
 import { RegisterData } from "../../interfaces/user.interface";
 import CheckPassword from "../Organisms/CheckPassword";
+import { useAppDispatch } from "../../hooks/useDispatch.hook";
+import { thunkUpdateProfile } from "../../redux/thunks/auth.thunk";
 
 interface UserEditProps {
-  close?: () => void;
+  close: () => void;
 }
 
 const UserEdit: React.FC<UserEditProps> = ({ close }) => {
   const [onConfirm, setOnConfirm] = useState<boolean>(false);
   const [showChangePassword, setShowChangePassword] = useState<boolean>(false);
   const [showPassword, setShowPassword] = useState<boolean>(false);
+  const dispatch = useAppDispatch();
 
-  const fields = useMemo<
-    Array<{ name: keyof RegisterData; label: string; placeholder: string }>
-  >(
-    () => [
-      { name: "firstname", label: "Nombre", placeholder: "ingresa tu Nombre" },
-      {
-        name: "lastname",
-        label: "Apellido",
-        placeholder: "ingresa tu Apellido",
-      },
-      { name: "email", label: "Email", placeholder: "ingresa tu Email" },
-      { name: "rol", label: "Rol", placeholder: "ingresa tu Rol" },
-      {
-        name: "password",
-        label: "Contraseña",
-        placeholder: "ingresa tu Contraseña",
-      },
-    ],
-    []
-  );
+  const user = selectUser();
+  const isInvestor = !!user?.isInvestor;
+
+  // Definición de los campos usando `useMemo` para que se recalculen cuando `isInvestor` cambie
+  const fields = useMemo(() => {
+    const baseFields = [
+      { name: "firstname", label: "Nombre", placeholder: "Ingresa tu Nombre" },
+      { name: "lastname", label: "Apellido", placeholder: "Ingresa tu Apellido" },
+      { name: "email", label: "Email", placeholder: "Ingresa tu Email" },
+    ];
+
+    if (isInvestor) {
+      // Campos adicionales para inversores
+      return [
+        ...baseFields,
+        { name: "password", label: "Contraseña", placeholder: "Ingresa tu Contraseña" },
+      ] as const;  // Usa `as const` para preservar el tipado exacto
+    }
+
+    // Campos adicionales para usuarios normales
+    return [
+      ...baseFields,
+      { name: "rol", label: "Rol", placeholder: "Ingresa tu Rol" },
+      { name: "password", label: "Contraseña", placeholder: "Ingresa tu Contraseña" },
+    ] as const;  // Usa `as const` para preservar el tipado exacto
+  }, [isInvestor]);
 
   const options = useMemo(() => {
     return [
@@ -48,8 +57,6 @@ const UserEdit: React.FC<UserEditProps> = ({ close }) => {
     ];
   }, []);
 
-  const user = selectUser();
-
   const [compressedFile, setCompressedFile] = useState<File>();
 
   const { control, handleSubmit } = useForm<RegisterData>({
@@ -57,7 +64,7 @@ const UserEdit: React.FC<UserEditProps> = ({ close }) => {
       firstname: user?.profile.firstname,
       lastname: user?.profile.lastname,
       email: user?.profile.email,
-      rol: user?.profile.rol,
+      rol: user?.isInvestor ? "" : user?.profile.rol,
       password: "",
     },
   });
@@ -94,15 +101,16 @@ const UserEdit: React.FC<UserEditProps> = ({ close }) => {
     onDrop,
   });
 
-  const onSubmit = (data: RegisterData) => {
+  const onSubmit = async(data: RegisterData) => {
     console.log("onSubmit", data);
+    await dispatch(thunkUpdateProfile({data, isInvestor}));
+    close();
   }
 
   useEffect(() => {
-      setCompressedFile(undefined);
-      setShowChangePassword(false);
+    setCompressedFile(undefined);
+    setShowChangePassword(false);
   }, []);
-
 
   return (
     <div className="user-edit">
@@ -138,85 +146,76 @@ const UserEdit: React.FC<UserEditProps> = ({ close }) => {
             <h2>{user?.avatar?.initials}</h2>
           )}
         </figure>
-        {fields.map(({ label, name, placeholder }) => (
+        {fields.map(({ label, name, placeholder }, index) => (
           <Controller
-            name={name}
+            key={index}
+            name={name as unknown as keyof RegisterData}
             control={control}
-            rules={!showChangePassword && name === "password" ? { } : { required: "Este campo es requerido" }}
-            render={({ field, fieldState: { error } }) => {
-              return (
-                <span className="user-edit__container-field">
-                  {name === "rol" ? (
-                    <span className="user-edit__container-field">
-                      <label className="user-edit__container-field-label">
-                        {label}
-                      </label>
-                      <select
+            rules={(!showChangePassword && name === "password") ? {} : { required: "Este campo es requerido" }}
+            render={({ field, fieldState: { error } }) => (
+              <span className="user-edit__container-field">
+                {name === "rol" ? (
+                  <span className="user-edit__container-field">
+                    <label className="user-edit__container-field-label">
+                      {label}
+                    </label>
+                    <select
+                      className="user-edit__container-field-input"
+                      {...field}
+                    >
+                      {options.map((opt, index) => (
+                        <option key={index} value={opt.value}>
+                          {opt.label}
+                        </option>
+                      ))}
+                    </select>
+                  </span>
+                ) : (
+                  <span className="user-edit__container-field">
+                    <label className="user-edit__container-field-label">
+                      {label}
+                    </label>
+                    {name === "password" && !showChangePassword ? (
+                      <button onClick={() => setShowChangePassword(true)}>
+                        Quieres cambiar constraseña
+                      </button>
+                    ) : (
+                      <input
+                        type={name === "password" && (showPassword ? "text" : name) || "text"}
                         className="user-edit__container-field-input"
+                        placeholder={placeholder}
                         {...field}
-                      >
-                        {options.map((opt, index) => (
-                          <option key={index} value={opt.value}>
-                            {opt.label}
-                          </option>
-                        ))}
-                      </select>
-                    </span>
-                  ) : (
-                    <span className="user-edit__container-field">
-                      <label className="user-edit__container-field-label">
-                        {label}
-                      </label>
-                      {name === "password" && !showChangePassword ?
-                      (
-                        <button onClick={() => setShowChangePassword(true)}>
-                          Quieres cambiar constraseña
-                        </button>
-                      ) : (
-                        <input
-                          type={name === "password" && (showPassword ? "text" : name) || "text"}
-                          className="user-edit__container-field-input"
-                          placeholder={placeholder}
-                          {...field}
-                        />
-                      ) }
-                      {name !== "password" && error && (
-                        <p className="user-edit__container-field-error">
-                          {error?.message}
-                        </p>
-                      )}
-                      {name === "password" && showChangePassword && (
-                        <>
-                          {field.value && (
-                            <button type="button" onClick={()=>setShowPassword(v => !v)}>Mostrar</button>
-                          )}
-                          <CheckPassword password={field.value} />
-                        </>
-                      )}
-                    </span>
-                  )}
-                </span>
-              );
-            }}
+                      />
+                    )}
+                    {name !== "password" && error && (
+                      <p className="user-edit__container-field-error">
+                        {error?.message}
+                      </p>
+                    )}
+                    {name === "password" && showChangePassword && (
+                      <>
+                        {field.value && (
+                          <button type="button" onClick={() => setShowPassword(v => !v)}>Mostrar</button>
+                        )}
+                        <CheckPassword password={field.value} />
+                      </>
+                    )}
+                  </span>
+                )}
+              </span>
+            )}
           />
         ))}
-        <button className="user-edit__container-button">Guargar cambios</button>
-        {
-            onConfirm &&
-        <ConfirmModal
-          close={() => setOnConfirm(false)}
-          onConfirm={() => {
-            close?.();
-            setOnConfirm(false);
-          }}
-        />
-        }
-        {/* <input type="text" placeholder="Nombre"></input>
-        <input type="text" placeholder="Apellido"></input>
-        <input type="text" placeholder="Email"></input>
-        <input type="text" placeholder="Rol"></input>
-        <input type="text" placeholder="Contraseña"></input>
-        <input type="text" placeholder="Confirmar Contraseña"></input> */}
+        <button className="user-edit__container-button" type="submit">Guardar cambios</button>
+        {onConfirm && (
+          <ConfirmModal
+            close={() => setOnConfirm(false)}
+            onConfirm={() => {
+              close?.();
+              setOnConfirm(false);
+            }}
+          />
+        )}
       </form>
     </div>
   );
@@ -227,10 +226,7 @@ interface ConfirmModalProps {
   onConfirm: () => void;
 }
 
-const ConfirmModal: React.FC<ConfirmModalProps> = ({
-  close,
-  onConfirm,
-}) => {
+const ConfirmModal: React.FC<ConfirmModalProps> = ({ close, onConfirm }) => {
   return (
     <div className="confirm-modal">
       <div className="confirm-modal__container">
