@@ -10,9 +10,10 @@ import { useNavigate } from 'react-router-dom';
 
 interface ProjectsViewerProps {
     projects: Project[]
+    userEdit?: boolean
 }
 const ProjectsViewer: React.FC<ProjectsViewerProps> = ({
-    projects
+    projects,
 }) => {
     const dispatch = useAppDispatch();
     const navigation = useNavigate();

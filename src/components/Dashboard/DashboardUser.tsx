@@ -4,12 +4,15 @@ import "./Dashboard.style.scss";
 import { UserPanel } from "../";
 import { Link } from "react-router-dom";
 import ProjectsViewer from "../Organisms/ProjectsViewer";
-import { selectUserProjects } from "../../redux/selectors/project.selector";
+import { selectRecomendedProjects, selectUserProjects } from "../../redux/selectors/project.selector";
 import FilterList from "../Organisms/FilterList";
+import { selectDashboardData } from "../../redux/selectors/dashboard.selector";
 
 const DashboardUser = () => {
 
   const projects = selectUserProjects();
+  const projectsRecomended = selectRecomendedProjects()!;
+  const {financedProjects, pendingProjects, postuledProjects} = selectDashboardData()!;
 
   return (
     <div className="dashboard">
@@ -17,19 +20,19 @@ const DashboardUser = () => {
         <h2>Dashboard de usuario</h2>
         <section className="dashboard__panel-cards">
           <span className="dashboard__panel-cards__item">
-            <h3 className="dashboard__panel-cards__item-cantidad">12</h3>
+            <h3 className="dashboard__panel-cards__item-cantidad">{postuledProjects?.length}</h3>
             <p className="dashboard__panel-cards__item-label">
               Proyectos Postulados
             </p>
           </span>
           <span className="dashboard__panel-cards__item">
-            <h3 className="dashboard__panel-cards__item-cantidad">2</h3>
+            <h3 className="dashboard__panel-cards__item-cantidad">{financedProjects?.length}</h3>
             <p className="dashboard__panel-cards__item-label">
               Proyectos Financiados
             </p>
           </span>
           <span className="dashboard__panel-cards__item">
-            <h3 className="dashboard__panel-cards__item-cantidad">10</h3>
+            <h3 className="dashboard__panel-cards__item-cantidad">{pendingProjects?.length}</h3>
             <p className="dashboard__panel-cards__item-label">
               Proyectos Pendientes
             </p>
@@ -43,6 +46,17 @@ const DashboardUser = () => {
         </section>
         <FilterList/>
         <ProjectsViewer projects={projects || []}/>
+        {
+        projectsRecomended && (
+          <>
+      <h2>
+        Proyectos Recomendados
+      </h2>
+        <FilterList />
+          <ProjectsViewer projects={projectsRecomended || []} />
+          </>
+        ) 
+      }
       </section>
       <UserPanel/>
     </div>

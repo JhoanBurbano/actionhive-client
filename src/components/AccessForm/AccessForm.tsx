@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Field } from "../../interfaces/forms.interfaces";
 import Select from "react-select";
 import "./AccessForm.style.scss";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { Control, Controller } from "react-hook-form";
 import CheckPassword from "../Organisms/CheckPassword";
 import { selectAuthState } from "../../redux/selectors/auth.selectors";
@@ -13,7 +13,7 @@ interface AccessFormProps {
   fields: Array<Field>;
   isLogin: boolean;
   control: Control<any>;
-  onSubmit?: () => void;
+  onSubmit?: (isInvestor: boolean) => void;
 }
 
 const AccessFrom: React.FC<AccessFormProps> = ({
@@ -24,11 +24,11 @@ const AccessFrom: React.FC<AccessFormProps> = ({
   control,
   onSubmit,
 }) => {
-
   const { user, token } = selectAuthState();
 
   const navigation = useNavigate();
 
+  const [isInvestor, setIsInvestor] = React.useState(false);
 
   useEffect(() => {
     if (user !== null && token !== null) {
@@ -47,9 +47,9 @@ const AccessFrom: React.FC<AccessFormProps> = ({
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    onSubmit?.();
+    onSubmit?.(isInvestor);
   };
-  
+
   return (
     <form className="access-form" onSubmit={handleSubmit}>
       <h3 className="access-form__title">{title}</h3>
@@ -61,26 +61,33 @@ const AccessFrom: React.FC<AccessFormProps> = ({
               key={index}
               name={type}
               control={control}
-              rules={{ required: "Este campo es requerido", ...rules}}
+              rules={{ required: "Este campo es requerido", ...rules }}
               render={({ field, fieldState: { invalid, error } }) => (
                 <>
                   {type === "rol" ? (
                     <span className="access-form__field">
-                    <label className="access-form__field-label">
-                      {label}
-                    </label>
-                    <Select
-                      defaultValue={options.find( opt => opt.value = field.value) || null}
-                      onChange={(value) => {
-                        console.log('value :>> ', value);
-                        field.onChange(value?.value || value?.label.toLowerCase());
-                      }}
-                      options={options}
-                      isMulti={false}
-                      className="multiselect-custom"
-                      placeholder="Registrate como"
-                    />
-                      <span className="access-form__field-error">{invalid && error?.message}</span>
+                      <label className="access-form__field-label">
+                        {label}
+                      </label>
+                      <Select
+                        defaultValue={
+                          options.find((opt) => (opt.value = field.value)) ||
+                          null
+                        }
+                        onChange={(value) => {
+                          console.log("value :>> ", value);
+                          field.onChange(
+                            value?.value || value?.label.toLowerCase()
+                          );
+                        }}
+                        options={options}
+                        isMulti={false}
+                        className="multiselect-custom"
+                        placeholder="Registrate como"
+                      />
+                      <span className="access-form__field-error">
+                        {invalid && error?.message}
+                      </span>
                     </span>
                   ) : (
                     <span className="access-form__field">
@@ -93,14 +100,14 @@ const AccessFrom: React.FC<AccessFormProps> = ({
                         className="access-form__field-input"
                         {...field}
                       />
-                      {
-                        (type !== 'password' || isLogin) && <span className="access-form__field-error">{invalid && error?.message}</span>
-                        }
-                      {
-                        type === "password" && !isLogin && (
-                          <CheckPassword password={field.value} />
-                        )
-                      }
+                      {(type !== "password" || isLogin) && (
+                        <span className="access-form__field-error">
+                          {invalid && error?.message}
+                        </span>
+                      )}
+                      {type === "password" && !isLogin && (
+                        <CheckPassword password={field.value} />
+                      )}
                       {type === "password" && isLogin && (
                         <Link
                           to={"/forgot-password"}
@@ -115,6 +122,12 @@ const AccessFrom: React.FC<AccessFormProps> = ({
               )}
             />
           ))}
+          {isLogin && (
+              <label>
+                <input type="checkbox" onChange={(e)=>setIsInvestor(e.target.checked)} checked={isInvestor}/>
+                Eres investigador
+              </label>
+          )}
         </>
       }
       <button className="access-form__button">Enviar</button>

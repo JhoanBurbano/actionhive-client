@@ -13,6 +13,7 @@ import storage from 'redux-persist/lib/storage';
 import uiSlice, { UIState } from '../redux/slices/ui.slice.ts';
 import authSlice, { AuthState } from './slices/auth.slice.ts';
 import projectSlice, { ProjectState } from './slices/projects.slice.ts';
+import dashboardSlice, { DashboardState } from './slices/dashboard.slice.ts';
 
 const persistConfig = {
   key: 'root',
@@ -25,6 +26,7 @@ const rootReducer = combineReducers({
   ui: uiSlice,
   project: projectSlice,
   auth: authSlice,
+  dashboard: dashboardSlice,
 });
 
 const persistedReducer = persistReducer<CombinedState>(persistConfig, rootReducer);
@@ -47,4 +49,5 @@ export type CombinedState = {
   ui: UIState;
   auth: AuthState;
   project: ProjectState;
+  dashboard: DashboardState;
 };

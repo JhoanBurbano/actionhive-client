@@ -1,46 +1,84 @@
 .create-form {
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+  max-width: 800px;
+  background-color: #212121;
+  padding: 20px;
+  padding-bottom: 50px;
+  border-radius: 16px;
+  box-shadow: 0 0 10px 2px #21212121;
+  min-height: 500px;
+  color: white;
+  gap: 30px;
+  position: relative;
+  margin: auto;
+  &__title {
+    text-align: center;
+    font-size: 30px;
+  }
+  &__description {
+    font-size: 14px;
+  }
+  &__field {
     display: flex;
     flex-direction: column;
-    min-width: 300px;
-    max-width: 800px;
-    background-color: #212121;
-    padding: 20px;
-    padding-bottom: 50px;
-    border-radius: 16px;
-    box-shadow: 0 0 10px 2px #21212121;
-    min-height: 500px;
-    color: white;
-    gap: 30px;
-    position: relative;
-    margin: auto;
-    &__title {
-        text-align: center;
-        font-size: 30px;
+    gap: 10px;
+    &-input {
+      resize: none;
+      border-radius: 8px;
     }
-    &__description {
-        font-size: 14px;
+    &-label {
+      font-size: 14px;
+      font-weight: bold;
     }
-    &__field {
+    &-error {
+      color: #ff5757;
+    }
+    &-range {
+      &-card {
         display: flex;
         flex-direction: column;
+        margin-top: 10px;
+        justify-content: space-between;
+        padding: 10px;
+        background-color: #ffffff;
+        color: #131313;
+        border-radius: 8px;
         gap: 10px;
         &-input {
-            resize: none;
-            border-radius: 8px;
+          width: auto;
+          border-radius: 8px;
+          overflow: hidden;
+          -webkit-appearance: none;
+          appearance: none;
+          background-color: #3f3f3f;
+
+          &::-webkit-slider-runnable-track {
+            height: 10px;
+            -webkit-appearance: none;
+            color: #13bba4;
+            margin-top: -1px;
+            border-radius: 50%;
+          }
+
+          &::-webkit-slider-thumb {
+            width: 10px;
+            -webkit-appearance: none;
+            height: 10px;
+            cursor: pointer;
+            background: #0c7229;
+            // border-radius: 50%;
+            box-shadow: -800px 0 0 800px #33aa55;
+          }
         }
-        &-label {
-            font-size: 14px;
-            font-weight: bold;
-        }
-        &-error {
-            color: #ff5757;
-        }
-    }
-    &__button {
-        width: min-content;
-        margin: 0 auto;
-        padding: 10px;
-        border-radius: 8px;
+      }
     }
   }
-  
+  &__button {
+    width: min-content;
+    margin: 0 auto;
+    padding: 10px;
+    border-radius: 8px;
+  }
+}

@@ -7,16 +7,24 @@ import {
   setOverflow,
   setWhiteBackground,
 } from "../../redux/slices/ui.slice";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { selectToken } from "../../redux/selectors/auth.selectors";
 
 const Landing: React.FC = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate()
+
+
+  const token = selectToken();
 
   function handleOnLoad() {
     dispatch(setLoader(false))
   }
 
   useEffect(() => {
+    if (token) {
+      navigate("/dashboard");
+    }
     dispatch(setFullTemplate(true));
     dispatch(setOverflow(true));
     dispatch(setWhiteBackground(true));

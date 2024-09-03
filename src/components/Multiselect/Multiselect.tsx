@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Select, { MultiValue } from 'react-select';
 import './Multiselect.style.scss'
 
@@ -10,22 +10,31 @@ interface Option {
 interface MultiselectProps {
     options: Option[],
     placeholder: string,
-    onChange: (selected: MultiValue<Option>)=>void
+    onChange: (selected: string[])=>void,
+    initialValue?: string[] 
 }
 
 
-const Multiselect: React.FC<MultiselectProps> = ({options, placeholder, onChange}) => {
+const Multiselect: React.FC<MultiselectProps> = ({options, placeholder, onChange, initialValue}) => {
   const [selectedOption, setSelectedOption] = useState<Option[] | null>(null);
 
   const handleChange = (selected: MultiValue<Option>) => {
     setSelectedOption(selected as Option[]);
-    onChange(selected as Option[])
+    onChange((selected as Option[]).map((option) => option.value))
   };
+
+  useEffect(() => {
+    if (initialValue?.length) {
+      console.log('initialValue :>> ', initialValue, options.filter((option) => initialValue.includes(option.value)));
+      setSelectedOption(options.filter((option) => initialValue.includes(option.value)));
+    }
+  }, []);
 
   return (
     <div className="App">
       <Select
         defaultValue={selectedOption}
+        value={selectedOption}
         onChange={handleChange}
         options={options}
         isMulti={true}

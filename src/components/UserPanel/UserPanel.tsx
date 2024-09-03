@@ -4,9 +4,11 @@ import { useAppDispatch } from "../../hooks/useDispatch.hook";
 import { thunkSignOut } from "../../redux/thunks/auth.thunk";
 import { selectUser } from "../../redux/selectors/auth.selectors";
 import { selectMobile } from "../../redux/selectors/ui.selectors";
+import UserEdit from "./UserEdit";
 
 const UserPanel: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isEdit, setIsEdit] = useState<boolean>(false);
   const isMobile = selectMobile();
   const user = selectUser();
   const dispatch = useAppDispatch()
@@ -21,6 +23,7 @@ const UserPanel: React.FC = () => {
 
   return (
     <>
+    { isEdit && <UserEdit close={()=>setIsEdit(false)}/> }
     {
             isMobile &&
             <span className="user-action" onClick={handleClick}>
@@ -46,7 +49,7 @@ const UserPanel: React.FC = () => {
         <h3 className="user-panel__perfil-name">{`${user?.profile.firstname} ${user?.profile.lastname}`}</h3>
         <p className="user-panel__perfil-email">{user?.profile.email}</p>
         <i className="user-panel__perfil-rol">{user?.profile.rol}</i>
-        <button className="user-panel__perfil-button">Editar Perfil</button>
+        <button className="user-panel__perfil-button" onClick={()=>setIsEdit(v => v ? v : !v)}>Editar Perfil</button>
       </span>
       <span className="user-panel__notificaciones">
         <h3 className="user-panel__notificaciones-title">Notificaciones</h3>

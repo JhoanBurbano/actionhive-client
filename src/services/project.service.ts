@@ -21,6 +21,17 @@ export const getUserProjects = async () => {
     }
 };
 
+
+export const getProjectsRecomended = async (role: "investor" | "user") => {
+  try {
+    const response = await axios.get(`${API_URL}projects/recommendations/${role}`);
+    return response.data.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+
 export const getProject = async (id: string) => {
     try {
       const response = await axios.get(`${API_URL}projects/${id}`);

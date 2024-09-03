@@ -15,9 +15,9 @@ const Login = () => {
         }
     })
 
-    const onSubmit = async () => {
+    const onSubmit = async (isInvestor: boolean) => {
         const submit = handleSubmit((data: LoginData)=>{
-            dispatch(thunkSignInWithEmailAndPassword(data))
+            dispatch(thunkSignInWithEmailAndPassword({...data, isInvestor}))
             setValue('password', '')
         })
         submit()

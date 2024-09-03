@@ -16,6 +16,7 @@ import DashboardRouter from "./views/DashboardRouter/DashboardRouter.tsx";
 import NotFound from "./components/NotFound/NotFound.tsx";
 import ForgotPassword from "./views/Access/ForgotPassword.tsx";
 import ProjectDetail from "./views/Dashboard/ProjectDetail.tsx";
+import UpdateProject from "./views/CreateProject/UpdateProject.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <Provider store={store}>
@@ -36,6 +37,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
           >
             <Route index element={<Dashboard />} />
             <Route path="create" element={<CreateProject />} />
+            <Route path="update-project" element={<UpdateProject />} />
             <Route path="project-detail" element={<ProjectDetail />} />
           </Route>
           <Route path="*" element={<NotFound />} />

@@ -22,7 +22,7 @@ export interface Project {
   hasAI?: boolean;
   collaborators?: string[];
   resourceOptimization?: string[];
-  location?: string[];
+  location?: string;
   manufacturingTechnology?: string[];
   developmentStatus?: number;
   riskLevel?: string;
@@ -42,6 +42,7 @@ export type ProjectData = Omit<Project, "id" | "representant" | "team">;
 
 export interface UserProfile {
   profile: User;
+  isInvestor: boolean;
   avatar: {
     url: string;
     initials: string;

@@ -1,11 +1,12 @@
 import axios from "axios";
 import { API_URL } from "../constants/config.constants";
 
-export const login = async (email: string, password: string) => {
+export const login = async (email: string, password: string, isInvestor: boolean) => {
   try {
     const response = await axios.post(`${API_URL}access/login`, {
       email,
       password,
+      isInvestor
     });
     return response.data.data;
   } catch (error) {

@@ -6,6 +6,7 @@ import {
   deleteProject,
   getProject,
   getProjects,
+  getProjectsRecomended,
   getUserProjects,
   updateProject,
 } from "../../services/project.service";
@@ -42,6 +43,22 @@ export const thunkGetUserProjects = createAsyncThunk(
   }
 );
 
+export const thunkGetProjectsRecomended  = createAsyncThunk(
+  "projects/getProjectsRecomended",
+  async (role: "investor" | "user", { dispatch }) => {
+    try {
+      dispatch(setLoader(true));
+      const projects = await getProjectsRecomended(role);
+      dispatch(setLoader(false));
+      return projects;
+    } catch (error) {
+      console.log("error :>> ", error);
+      dispatch(setLoader(false));
+      return [];
+    }
+  }
+);
+
 export const thunkGetProject = createAsyncThunk(
   "projects/getProjectDetail",
   async (id: string, { dispatch }) => {
@@ -65,6 +82,8 @@ export const thunkCreateProject = createAsyncThunk(
       dispatch(setLoader(true));
       const projects = await createProject(project);
       dispatch(setLoader(false));
+      console.log('here :>> ');
+      await dispatch(thunkGetUserProjects());
       return projects;
     } catch (error) {
       console.log("error :>> ", error);
@@ -84,6 +103,8 @@ export const thunkUpdateProject = createAsyncThunk(
       dispatch(setLoader(true));
       const projects = await updateProject(id, project);
       dispatch(setLoader(false));
+      dispatch(thunkGetUserProjects());
+      await dispatch(thunkGetProject(id));
       return projects;
     } catch (error) {
       console.log("error :>> ", error);
@@ -100,6 +121,7 @@ export const thunkDeleteProject = createAsyncThunk(
       dispatch(setLoader(true));
       const projects = await deleteProject(id);
       dispatch(setLoader(false));
+      await dispatch(thunkGetUserProjects());
       return projects;
     } catch (error) {
       console.log("error :>> ", error);
@@ -108,3 +130,5 @@ export const thunkDeleteProject = createAsyncThunk(
     }
   }
 );
+
+

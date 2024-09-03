@@ -1,5 +1,5 @@
 import './App.scss'
-import { Outlet} from 'react-router-dom'
+import { Outlet } from 'react-router-dom'
 import TopBar from './components/TopBar/TopBar'
 import { useDispatch, useSelector } from 'react-redux'
 import { persistor, RootState } from './redux/store'
@@ -38,6 +38,8 @@ function App() {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
+
   return (
     <div className='viewport'>
       <ToastContainer />
