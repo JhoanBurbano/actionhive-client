@@ -95,7 +95,7 @@ const UserEdit: React.FC<UserEditProps> = ({ close }) => {
   });
 
   const onSubmit = (data: RegisterData) => {
-    console.log("onSubmit");
+    console.log("onSubmit", data);
   }
 
   useEffect(() => {
