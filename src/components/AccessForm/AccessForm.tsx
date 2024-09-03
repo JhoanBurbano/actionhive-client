@@ -106,7 +106,7 @@ const AccessFrom: React.FC<AccessFormProps> = ({
                         </span>
                       )}
                       {type === "password" && !isLogin && (
-                        <CheckPassword password={field.value} />
+                        <CheckPassword password={field.value} white />
                       )}
                       {type === "password" && isLogin && (
                         <Link
