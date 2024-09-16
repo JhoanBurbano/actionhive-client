@@ -465,12 +465,18 @@ const ProyectoForm: React.FC<ProjectFormProps> = ({
       <span className="create-form__field">
         <label>Nivel de Riesgo:</label>
         <Controller
-          name="riskLevel"
+          name="projectRiskCalculation"
           control={control}
           rules={{ required: "Este campo es requerido" }}
-          render={({ field }) => (
+          render={({ field }) => {
+            const percentage = Math.floor(Number(field.value!) * 100);
+            const status = 
+              percentage < 15 ? "Bajo" :
+              percentage < 35 ? "Moderado" :
+              percentage < 50 ? "Alto" : "Demasiado Alto";
+            return(
             <>
-              <select
+              {/* <select
                 className="create-form__field-input"
                 {...field}
                 defaultValue={""}
@@ -486,11 +492,55 @@ const ProyectoForm: React.FC<ProjectFormProps> = ({
               </select>
               <span className="create-form__field-error">
                 {errors.riskLevel?.message as ReactNode}
-              </span>
+              </span> */}
+              <span className="create-form__field-range-card">
+                <p className="create-form__field-range-card-text">{`${percentage}%`} - <b className="create-form__field-range-card-text-bold">{status}</b></p>
+                <input style={{padding: 0}} type="range" min={0} max={1} step={0.005} {...field}  className="create-form__field-range-card-input"/>
+                </span>
             </>
-          )}
+          )}}
         />
       </span>
+
+<span className="create-form__field">
+  <label>Tasa de retorno:</label>
+  <Controller
+    name="returnRate"
+    control={control}
+    rules={{ required: "Este campo es requerido" }}
+    render={({ field }) => {
+      const percentage = Math.floor(Number(field.value!) * 100);
+      const status = 
+        percentage < 15 ? "Baja" :
+        percentage < 35 ? "Moderada" :
+        percentage < 50 ? "Alta" : "Demasiado Alta";
+      return(
+      <>
+        {/* <select
+          className="create-form__field-input"
+          {...field}
+          defaultValue={""}
+        >
+          <option value="" disabled>
+            Seleccione el nivel de riesgo del proyecto
+          </option>
+          {PROJECT_CONTANTS.risk.map((c, i) => (
+            <option value={c} key={i}>
+              {c}
+            </option>
+          ))}
+        </select>
+        <span className="create-form__field-error">
+          {errors.riskLevel?.message as ReactNode}
+        </span> */}
+        <span className="create-form__field-range-card">
+          <p className="create-form__field-range-card-text">{`${percentage}%`} - <b className="create-form__field-range-card-text-bold">{status}</b></p>
+          <input style={{padding: 0}} type="range" min={0} max={1} step={0.005} {...field}  className="create-form__field-range-card-input"/>
+          </span>
+      </>
+    )}}
+  />
+</span>
 
       <span className="create-form__field">
         <label>Tipo de Recompensa:</label>
@@ -518,7 +568,7 @@ const ProyectoForm: React.FC<ProjectFormProps> = ({
       </span>
 
       <span className="create-form__field">
-        <label>Periodo de Retorno:</label>
+        <label>Periodo de Retorno (Meses)</label>
         <Controller
           name="returnPeriod"
           control={control}

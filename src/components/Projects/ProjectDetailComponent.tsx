@@ -69,7 +69,7 @@ const ProjectDetailComponent: React.FC<ProjectDetailComponentProps> = ({
                             } else if (typeof value === "number") {
                               if (key !== "cluster" ) {
 
-                                value =  value < 1 ? (((value) * 100).toFixed(1) + "%" ) : (value > 100000 ? `$ ${value.toString().replace(CURRENCY_REGEX, '.')} COP` : value);
+                                value =  value < 1.01 ? (((value) * 100).toFixed(1) + "%" ) : (value > 100000 ? `$ ${value.toString().replace(CURRENCY_REGEX, '.')} COP` : value);
                               }
                                 // value = typeof value === "string" && value.includes("%") ? `${value} de 100` : value
                             } else if (Array.isArray(value)) {
