@@ -10,8 +10,9 @@ import Select from "react-select";
 import '../Multiselect/Multiselect.style.scss'
 import { useNavigate } from "react-router-dom";
 
+type ProjectAny = Project & { returnRate: number, projectRiskCalculation: number };
 interface ProjectFormProps {
-  project?: Project;
+  project?: ProjectAny ;
   isEdit?: boolean;
 }
 
@@ -24,8 +25,8 @@ const ProyectoForm: React.FC<ProjectFormProps> = ({
     handleSubmit,
     control,
     formState: { errors },
-  } = useForm<ProjectData>({
-    defaultValues: isEdit ? {...project as ProjectData} : {
+  } = useForm<ProjectData  & { returnRate: number, projectRiskCalculation: number }>({
+    defaultValues: isEdit ? {...project as ProjectData & { returnRate: number, projectRiskCalculation: number }} : {
       projectImages: [],
       projectName: "",
       projectObjective: "",
@@ -46,6 +47,8 @@ const ProyectoForm: React.FC<ProjectFormProps> = ({
       returnPeriod: 0,
       competitiveLandscape: [],
       isActive: false,
+      returnRate: 0,
+      
     },
   });
   
