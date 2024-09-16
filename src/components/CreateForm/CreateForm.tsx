@@ -53,7 +53,7 @@ const ProyectoForm: React.FC<ProjectFormProps> = ({
   });
   
   const parseDataToUpdate = (data: Record<string, any>) => {
-    const projectData: Partial<ProjectData> = {
+    const projectData: any = {
       projectImages: data.projectImages,
       projectName: data.projectName,
       projectObjective: data.projectObjective,
@@ -73,6 +73,9 @@ const ProyectoForm: React.FC<ProjectFormProps> = ({
       returnPeriod: data.returnPeriod,
       competitiveLandscape: data.competitiveLandscape,
       isActive: data.isActive,
+      returnRate: data.returnRate,
+      projectRiskCalculation: data.projectRiskCalculation
+
     };
     return projectData;
   }

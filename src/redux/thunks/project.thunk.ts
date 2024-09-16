@@ -96,7 +96,7 @@ export const thunkCreateProject = createAsyncThunk(
 export const thunkUpdateProject = createAsyncThunk(
   "projects/updateProject",
   async (
-    { id, project }: { id: string; project: Partial<Project> },
+    { id, project }: { id: string; project: any },
     { dispatch }
   ) => {
     try {

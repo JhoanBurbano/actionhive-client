@@ -1,6 +1,6 @@
 import axios from '../utils/axios'
 import { API_URL } from "../constants/config.constants";
-import { Project, ProjectData } from "../interfaces/user.interface";
+import { ProjectData } from "../interfaces/user.interface";
 
 export const getProjects = async () => {
     try {
@@ -50,8 +50,9 @@ export const createProject = async (project: ProjectData) => {
     }
 }
 
-export const updateProject = async (id: string, project: Partial<Project>) => {
+export const updateProject = async (id: string, project: any) => {
     try {
+      console.log('project :>> ', project);
       const response = await axios.put(`${API_URL}projects/${id}`, project);
       return response.data.data;
     } catch (error) {
