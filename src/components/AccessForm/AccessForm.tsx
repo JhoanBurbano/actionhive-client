@@ -32,7 +32,11 @@ const AccessFrom: React.FC<AccessFormProps> = ({
 
   useEffect(() => {
     if (user !== null && token !== null) {
-      navigation("/dashboard");
+      if(!user.preferencesCompleted){
+        navigation("/forms");
+      } else {
+        navigation("/dashboard");
+      }
     }
   }, [user]);
 
@@ -122,10 +126,10 @@ const AccessFrom: React.FC<AccessFormProps> = ({
               )}
             />
           ))}
-          {isLogin && (
+          {(
               <label>
                 <input type="checkbox" onChange={(e)=>setIsInvestor(e.target.checked)} checked={isInvestor}/>
-                Eres investigador
+                Eres Inversor
               </label>
           )}
         </>

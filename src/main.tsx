@@ -17,6 +17,7 @@ import NotFound from "./components/NotFound/NotFound.tsx";
 import ForgotPassword from "./views/Access/ForgotPassword.tsx";
 import ProjectDetail from "./views/Dashboard/ProjectDetail.tsx";
 import UpdateProject from "./views/CreateProject/UpdateProject.tsx";
+import Forms from "./views/Forms/Forms.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <Provider store={store}>
@@ -27,6 +28,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
           <Route path="forgot-password" element={<ForgotPassword />} />
+          <Route path="forms" element={<Forms />} />
           <Route
             path="dashboard"
             element={

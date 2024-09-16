@@ -6,6 +6,7 @@ import { thunkGetProjectsRecomended, thunkGetUserProjects } from "../../redux/th
 import { useAppDispatch } from "../../hooks/useDispatch.hook";
 import { selectUser } from "../../redux/selectors/auth.selectors";
 import { thunkGetDashboardData } from "../../redux/thunks/dashboard.thunk";
+import { useNavigate } from "react-router-dom";
 
 interface DashboardProps {
   type?: string;
@@ -14,9 +15,13 @@ interface DashboardProps {
 const Dashboard: React.FC<DashboardProps> = () => {
   const dispatch = useAppDispatch();
   const userProjects = selectUserProjects();
-  const {isInvestor} = selectUser()!;
+  const {isInvestor, preferencesCompleted} = selectUser()!;
+  const navigate = useNavigate();
 
   useEffect(() => {
+    if(!preferencesCompleted){
+      navigate("/forms");
+    }
     if(userProjects === null){
       dispatch(thunkGetUserProjects())
     }

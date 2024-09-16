@@ -1,0 +1,140 @@
+[
+  {
+    "id": 1,
+    "category": "user",
+    "question": "¿En qué tipo de proyectos te gustaría colaborar? ¿Prefieres iniciativas pequeñas o grandes?",
+    "type": "radio",
+    "options": [
+      "Proyectos medianos ($10,000,000 - $30,000,000)",
+      "Grandes y ambiciosos ($30,000,000 - $50,000,000)",
+      "Proyectos a gran escala ($50,000,000 - $90,000,000)"
+    ]
+  },
+  {
+    "id": 2,
+    "category": "user",
+    "question": "Cuando trabajas en un proyecto, ¿prefieres ir sobre seguro o disfrutas explorando caminos más riesgosos?",
+    "type": "radio",
+    "options": [
+      "Prefiero ir sobre seguro (Bajo riesgo)",
+      "Puedo tomar algunos riesgos si la recompensa es buena (Moderado)",
+      "Me encanta la aventura y los desafíos (Alto riesgo)"
+    ]
+  },
+  {
+    "id": 3,
+    "category": "user",
+    "question": "Al involucrarte en un proyecto, ¿qué prefieres más: estabilidad a largo plazo o la posibilidad de obtener resultados rápidos?",
+    "type": "radio",
+    "options": [
+      "Prefiero estabilidad a largo plazo (Bajo retorno esperado)",
+      "Un balance entre estabilidad y resultados (Moderado)",
+      "Me gusta ir por resultados rápidos y grandes (Alto retorno esperado)"
+    ]
+  },
+  {
+    "id": 4,
+    "category": "user",
+    "question": "¿Qué tipo de temas te apasionan y motivan a involucrarte en proyectos?",
+    "type": "checkbox",
+    "options": [
+      "Tecnología",
+      "Innovación",
+      "Sostenibilidad",
+      "Arte",
+      "Educación",
+      "Ciencias",
+      "Negocios"
+    ]
+  },
+  {
+    "id": 5,
+    "category": "user",
+    "question": "¿Cuáles son las áreas en las que te sientes más confiado y donde puedes aportar más en un equipo?",
+    "type": "checkbox",
+    "options": [
+      "Programación",
+      "Diseño gráfico",
+      "Gestión de proyectos",
+      "Análisis de datos",
+      "Marketing",
+      "Innovación",
+      "Investigación"
+    ]
+  },
+  {
+    "id": 6,
+    "category": "user",
+    "question": "Si tuvieras que elegir, ¿qué tipo de entorno prefieres para trabajar en proyectos? (Puedes mencionar tu ciudad ideal)",
+    "type": "text",
+    "options": []
+  },
+  {
+    "id": 7,
+    "category": "investor",
+    "question": "Al considerar un proyecto, ¿prefieres hacer contribuciones más pequeñas y distribuidas o grandes inversiones?",
+    "type": "radio",
+    "options": [
+      "Contribuciones pequeñas y manejables (alrededor de $5,000,000 - $10,000,000)",
+      "Inversiones moderadas ($10,000,000 - $30,000,000)",
+      "Inversiones grandes ($30,000,000 - $50,000,000)",
+      "Inversiones a gran escala ($50,000,000 - $90,000,000)"
+    ]
+  },
+  {
+    "id": 8,
+    "category": "investor",
+    "question": "¿Cómo te sientes cuando piensas en las fluctuaciones del mercado? ¿Te gusta la estabilidad o prefieres asumir riesgos?",
+    "type": "radio",
+    "options": [
+      "Prefiero la estabilidad (Bajo riesgo)",
+      "Estoy dispuesto a asumir ciertos riesgos (Moderado)",
+      "Me gusta la emoción de las grandes apuestas (Alto riesgo)"
+    ]
+  },
+  {
+    "id": 9,
+    "category": "investor",
+    "question": "¿Qué resultados esperas de tus inversiones? ¿Prefieres retornos lentos y seguros o buscas ganancias más rápidas?",
+    "type": "radio",
+    "options": [
+      "Retornos lentos y seguros (Bajo retorno esperado)",
+      "Un balance entre retorno y estabilidad (Moderado)",
+      "Busco retornos rápidos (Alto retorno esperado)"
+    ]
+  },
+  {
+    "id": 10,
+    "category": "investor",
+    "question": "¿Qué tipo de proyectos te interesan más para invertir?",
+    "type": "checkbox",
+    "options": [
+      "Tecnología",
+      "Energía renovable",
+      "Salud",
+      "Educación",
+      "Agricultura",
+      "Otros"
+    ]
+  },
+  {
+    "id": 11,
+    "category": "investor",
+    "question": "¿Te gustaría estar involucrado activamente en los proyectos que financias o prefieres un enfoque más pasivo?",
+    "type": "radio",
+    "options": [
+      "Activo",
+      "Pasivo"
+    ]
+  },
+  {
+    "id": 12,
+    "category": "investor",
+    "question": "¿Estás interesado en participar en la toma de decisiones clave de los proyectos que financias?",
+    "type": "radio",
+    "options": [
+      "Sí",
+      "No"
+    ]
+  }
+]

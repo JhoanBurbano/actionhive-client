@@ -67,6 +67,22 @@ button {
   }
 }
 
+.button {
+  display: inline-block;
+  width: min-content;
+  margin: 0 auto;
+  padding: 10px;
+  border-radius: 8px;
+  margin-right: 10px;
+}
+
+.button:disabled {
+  background-color: #b8c0c2;
+  color: #ffffff;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
 a {
   color: #33aa55;
   transition: color .3s ease-in-out;

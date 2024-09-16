@@ -50,7 +50,7 @@ const DashboardUser = () => {
         projectsRecomended && (
           <>
       <h2>
-        Proyectos Recomendados
+        Proyectos que van con tu perfil
       </h2>
         <FilterList />
           <ProjectsViewer projects={projectsRecomended || []} />

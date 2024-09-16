@@ -43,6 +43,7 @@ export type ProjectData = Omit<Project, "id" | "representant" | "team">;
 export interface UserProfile {
   profile: User;
   isInvestor: boolean;
+  preferencesCompleted: boolean;
   avatar: {
     url: string;
     initials: string;

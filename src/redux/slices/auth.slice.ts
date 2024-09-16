@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
+  thunkRefreshUser,
   thunkSignInWithEmailAndPassword,
   thunkSignOut,
   thunkSignUpWithEmailAndPassword,
@@ -38,6 +39,9 @@ export const authSlice = createSlice({
       })
       .addCase(thunkUpdateProfile.fulfilled, (state, action) => {
         console.log(action.payload!.user)
+        state.user = action.payload!.user;
+      })
+      .addCase(thunkRefreshUser.fulfilled, (state, action) => {
         state.user = action.payload!.user;
       });
   },

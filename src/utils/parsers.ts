@@ -24,7 +24,10 @@ export const parseProjectProps = (prop: string) => {
         rewardType: "Tipo de Recompensa",
         returnPeriod: "Plazo de Retorno",
         competitiveLandscape: "Panorama Competitivo",
-        isActive: "Activo"
+        isActive: "Activo",
+        projectRiskCalculation: "Cálculo de Riesgo del Proyecto",
+        returnRate: "Tasa de Retorno",
+        cluster: "Cluster",
       };
 
     return translations[prop] || prop;

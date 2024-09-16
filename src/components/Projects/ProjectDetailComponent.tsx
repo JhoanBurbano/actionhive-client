@@ -61,16 +61,23 @@ const ProjectDetailComponent: React.FC<ProjectDetailComponentProps> = ({
             <table className="project-detail__body-main-info-table">
                 <tbody>
                     {
-                        Object.keys(others).map((key, i) => {
-                            if (["_id", "id", "__v", "cluster"].includes(key)) return null;
+                        Object.keys(others).sort().map((key, i) => {
+                            if (["_id", "id", "__v", "riskLevel"].includes(key)) return null;
                             let value = (others as Record<string, any>)[key];
                             if (typeof value === "boolean") {
                                 value = value ? "Si" : "No";
                             } else if (typeof value === "number") {
-                                value =  value < 1 ? ((value * 100) + "%" ) : (value > 100000 ? value.toString().replace(CURRENCY_REGEX, '.') : value);
-                                value = typeof value === "string" && value.includes("%") ? `${value} de 100` : value
+                              if (key !== "cluster" ) {
+
+                                value =  value < 1 ? (((value) * 100).toFixed(1) + "%" ) : (value > 100000 ? `$ ${value.toString().replace(CURRENCY_REGEX, '.')} COP` : value);
+                              }
+                                // value = typeof value === "string" && value.includes("%") ? `${value} de 100` : value
                             } else if (Array.isArray(value)) {
                                 value = value.join(", ");
+                            }
+
+                            if(key === "returnPeriod") {
+                                value = `${value} meses`
                             }
 
                             return (

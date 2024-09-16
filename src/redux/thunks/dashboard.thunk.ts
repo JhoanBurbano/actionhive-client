@@ -10,7 +10,7 @@ export const thunkGetDashboardData = createAsyncThunk(
   async (isInvestor: boolean, { dispatch }) => {
     try {
       dispatch(setLoader(true));
-      const projects = await getDahsboardData(isInvestor ? ["financedProjects", "savedProjects", "favoriteProjects"] : ["postuledProjects", "financedProjects", "PendingProjects"], isInvestor);
+      const projects = await getDahsboardData(isInvestor ? ["financedProjects", "savedProjects", "favoriteProjects"] : ["postuledProjects", "financedProjects", "pendingProjects"], isInvestor);
       dispatch(setLoader(false));
       return projects;
     } catch (error) {
