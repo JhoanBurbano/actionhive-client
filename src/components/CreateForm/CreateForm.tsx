@@ -5,14 +5,14 @@ import { PROJECT_CONTANTS } from "../../constants/project.constants";
 import { DropImages, Multiselect, Toggle } from "..";
 import { useAppDispatch } from "../../hooks/useDispatch.hook";
 import { thunkCreateProject, thunkUpdateProject } from "../../redux/thunks/project.thunk";
-import { Project, ProjectData } from "../../interfaces/user.interface";
+import { ProjectData } from "../../interfaces/user.interface";
+import { ProjectAny } from "../../interfaces/project.interface";
 import Select from "react-select";
 import '../Multiselect/Multiselect.style.scss'
 import { useNavigate } from "react-router-dom";
 
-type ProjectAny = Project & { returnRate: number, projectRiskCalculation: number };
 interface ProjectFormProps {
-  project?: ProjectAny ;
+  project?: ProjectAny;
   isEdit?: boolean;
 }
 
