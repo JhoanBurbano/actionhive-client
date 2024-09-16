@@ -19,10 +19,12 @@ const Register = () => {
         }
     })
 
-    const onSubmit = async () => {
+    const onSubmit = async (isInvestor: boolean) => {
         console.log('onSubmit')
+
         const submit = handleSubmit((data: RegisterData)=>{
-            dispatch(thunkSignUpWithEmailAndPassword(data))
+
+            dispatch(thunkSignUpWithEmailAndPassword({...data, isInvestor}))
         })
         submit()
     }

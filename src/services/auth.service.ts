@@ -16,7 +16,7 @@ export const login = async (email: string, password: string, isInvestor: boolean
 };
 
 
-export const register = async (firstname: string, lastname:string, email: string, password: string, rol: string) => {
+export const register = async (firstname: string, lastname:string, email: string, password: string, rol: string, isInvestor: boolean) => {
   try {
     const response = await axios.post(`${API_URL}access/register`, {
       firstname,
@@ -24,6 +24,7 @@ export const register = async (firstname: string, lastname:string, email: string
       email,
       password,
       rol,
+      isInvestor
     });
     return response.data.data;
   } catch (error) {

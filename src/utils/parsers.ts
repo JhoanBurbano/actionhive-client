@@ -11,7 +11,7 @@ export const parseName = ({firstname, lastname}: any) => {
 export const parseProjectProps = (prop: string) => {
     const translations: Record<string, string> = {
         projectCategory: "Categoría del Proyecto",
-        fundingCap: "Límite de Financiamiento",
+        fundingCap: "Financiamiento",
         mechatronicComponents: "Componentes Mecatrónicos",
         controlPlatforms: "Plataformas de Control",
         designMethodology: "Método de Diseño",
@@ -25,7 +25,7 @@ export const parseProjectProps = (prop: string) => {
         returnPeriod: "Plazo de Retorno",
         competitiveLandscape: "Panorama Competitivo",
         isActive: "Activo",
-        projectRiskCalculation: "Cálculo de Riesgo del Proyecto",
+        projectRiskCalculation: "Riesgo del Proyecto",
         returnRate: "Tasa de Retorno",
         cluster: "Cluster",
       };

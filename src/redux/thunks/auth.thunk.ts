@@ -17,11 +17,11 @@ export const thunkSignOut = createAsyncThunk('auth/signOut', async (_, { dispatc
 
 export const thunkSignUpWithEmailAndPassword = createAsyncThunk(
   "auth/signUp",
-  async ({ firstname, lastname, email, password, rol }: RegisterData, { dispatch }) => {
+  async ({ firstname, lastname, email, password, rol, isInvestor }: RegisterData & {isInvestor: boolean}, { dispatch }) => {
     try {
       console.log('here :>> ', );
       dispatch(setLoader(true));
-      const user = await register(firstname, lastname, email, password, rol);
+      const user = await register(firstname, lastname, email, password, rol, isInvestor);
       if (!user) {
         throw Error("Credenciales invalidas");
       }

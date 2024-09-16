@@ -75,7 +75,6 @@
     "question": "Al considerar un proyecto, ¿prefieres hacer contribuciones más pequeñas y distribuidas o grandes inversiones?",
     "type": "radio",
     "options": [
-      "Contribuciones pequeñas y manejables (alrededor de $5,000,000 - $10,000,000)",
       "Inversiones moderadas ($10,000,000 - $30,000,000)",
       "Inversiones grandes ($30,000,000 - $50,000,000)",
       "Inversiones a gran escala ($50,000,000 - $90,000,000)"
