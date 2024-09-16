@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { setLoader } from "../slices/ui.slice";
-import { Project, ProjectData } from "../../interfaces/user.interface";
+import { ProjectData } from "../../interfaces/user.interface";
 import {
   createProject,
   deleteProject,
