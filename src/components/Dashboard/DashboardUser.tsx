@@ -5,7 +5,6 @@ import { UserPanel } from "../";
 import { Link } from "react-router-dom";
 import ProjectsViewer from "../Organisms/ProjectsViewer";
 import { selectRecomendedProjects, selectUserProjects } from "../../redux/selectors/project.selector";
-import FilterList from "../Organisms/FilterList";
 import { selectDashboardData } from "../../redux/selectors/dashboard.selector";
 
 const DashboardUser = () => {
@@ -44,7 +43,6 @@ const DashboardUser = () => {
             <button className="dashboard__panel-create-button">+ Nuevo Proyecto</button>
             </Link>
         </section>
-        <FilterList/>
         <ProjectsViewer projects={projects || []}/>
         {
         projectsRecomended && (
@@ -52,7 +50,6 @@ const DashboardUser = () => {
       <h2>
         Proyectos que van con tu perfil
       </h2>
-        <FilterList />
           <ProjectsViewer projects={projectsRecomended || []} />
           </>
         ) 

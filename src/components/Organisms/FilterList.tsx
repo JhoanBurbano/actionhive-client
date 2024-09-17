@@ -2,7 +2,13 @@ import { useAppDispatch } from "../../hooks/useDispatch.hook";
 import { thunkGetUserProjects } from "../../redux/thunks/project.thunk";
 import "./FilterList.style.scss";
 
-const FilterList = () => {
+const FilterList = ({
+  setSearch,
+  search,  
+}: Readonly<{
+  setSearch: (value: string) => void;
+  search: string;
+}>) => {
   const dispatch = useAppDispatch();
   const reloadProjects = () => {
     dispatch(thunkGetUserProjects());
@@ -24,34 +30,11 @@ const FilterList = () => {
             type="text"
             placeholder="Buscar por nombre de proyecto"
             className="filters-search-input"
+            onChange={(e) => setSearch(e.currentTarget.value)}
+            value={search}
           />
         </span>
-        <span className="filters-order">
-          <select
-            className="filters-order-select"
-            defaultValue={""}
-          >
-            <option value="" disabled>
-              Ordenar por
-            </option>
-            <option value="A-Z">Orden alfabetico Ascendente</option>
-            <option value="Z-A">Orden alfabetico Descendente</option>
-          </select>
-        </span>
-        <span className="filters-filters">
-          <select
-            className="filters-filters-select"
-            defaultValue={""}
-          >
-            <option value="" disabled>
-              Filtrar por estado de proyecto
-            </option>
-            <option value="A-Z">Proyectos Postulados</option>
-            <option value="Z-A">Proyectos Financiados</option>
-            <option value="Z-A">Proyectos Pendientes</option>
-          </select>
-        </span>
-        <button className="filters-clear">Limpiar Filtros</button>
+        <button className="filters-clear" onClick={()=>setSearch("")}>Limpiar</button>
       </section>
     </>
   );

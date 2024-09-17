@@ -122,3 +122,48 @@ select {
     font-size: 13px;
   }
 }
+
+
+.modal {
+  & div {
+    justify-content: space-between;
+    position: relative;
+    padding-top: 40px!important;
+    gap: 20px;
+    & img {
+      object-fit: cover;
+      width: 150px;
+      height: 150px;
+      margin: auto;
+    }
+    & button, & a {
+      background-color: #008d18;
+      color: white;
+      border-radius: 8px;
+      padding: 10px;
+      margin: 10px;
+      text-align: center;
+      &.red {
+        background-color: hsl(0, 100%, 62%);
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 20px;
+        height: 20px;
+        font-size: 10px!important;
+        border-radius: 50%;
+        padding: 0;
+      }
+    }
+    & article {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex: 1;
+      & table{
+        text-align: center;
+        border: 1px solid #008d18;
+      }
+    }
+  }
+}
