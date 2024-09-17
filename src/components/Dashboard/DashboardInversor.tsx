@@ -4,7 +4,6 @@ import "./Dashboard.style.scss";
 import { UserPanel } from "../";
 import { selectRecomendedProjects, selectUserProjects } from "../../redux/selectors/project.selector";
 import ProjectsViewer from "../Organisms/ProjectsViewer";
-import FilterList from "../Organisms/FilterList";
 import { selectDashboardData } from "../../redux/selectors/dashboard.selector";
 
 const DashboardInversor = () => {
@@ -39,7 +38,6 @@ const DashboardInversor = () => {
       <h2>Banco de Proyectos</h2>
       {projects?.length ? (
         <>
-      <FilterList />
         <ProjectsViewer projects={projects || []} />
         </>
       ) : (
@@ -53,7 +51,6 @@ const DashboardInversor = () => {
       <h2>
         Proyectos Recomendados
       </h2>
-        <FilterList />
           <ProjectsViewer projects={projectsRecomended || []} userEdit={false} />
           </>
         ) 
