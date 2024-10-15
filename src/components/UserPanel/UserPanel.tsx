@@ -50,8 +50,10 @@ const UserPanel: React.FC = () => {
         <p className="user-panel__perfil-email">{user?.profile.email}</p>
         <i className="user-panel__perfil-rol">{user?.profile.rol}</i>
         <button className="user-panel__perfil-button" onClick={()=>setIsEdit(v => v ? v : !v)}>Editar Perfil</button>
+      <button className="user-panel__perfil-button" onClick={logout} style={{fontSize: 12}}>Cerrar Sesion</button>
+
       </span>
-      <span className="user-panel__notificaciones">
+{      false && <span className="user-panel__notificaciones">
         <h3 className="user-panel__notificaciones-title">Notificaciones</h3>
         <ul className="user-panel__notificaciones-list">
           <li className="user-panel__notificaciones-list__item">
@@ -106,8 +108,7 @@ const UserPanel: React.FC = () => {
             </button>
           </li>
         </ul>
-      </span>
-      <button className="user-panel__logout" onClick={logout}>Cerrar Sesion</button>
+      </span>}
     </aside>
     </>
   );

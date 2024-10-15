@@ -18,6 +18,7 @@ import ForgotPassword from "./views/Access/ForgotPassword.tsx";
 import ProjectDetail from "./views/Dashboard/ProjectDetail.tsx";
 import UpdateProject from "./views/CreateProject/UpdateProject.tsx";
 import Forms from "./views/Forms/Forms.tsx";
+import SharedComponent from "./views/SharedComponent/SharedComponent.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <Provider store={store}>
@@ -41,6 +42,8 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
             <Route path="create" element={<CreateProject />} />
             <Route path="update-project" element={<UpdateProject />} />
             <Route path="project-detail" element={<ProjectDetail />} />
+            <Route path="join" element={<SharedComponent type={0} />} />
+            <Route path="invest" element={<SharedComponent type={1} />} />
           </Route>
           <Route path="*" element={<NotFound />} />
         </Route>

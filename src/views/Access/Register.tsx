@@ -37,7 +37,7 @@ const Register = () => {
         fields={[
             {label: 'Nombre', placeholder: 'Nombre', type: 'firstname', rules: {minLength: {value: 3, message: 'El nombre debe tener al menos 3 caracteres'}}},
             {label: 'Apellido', placeholder: 'Apellido', type: 'lastname', rules: {minLength: {value: 3, message: 'El nombre debe tener al menos 3 caracteres'}}},
-            {label: 'Rol', placeholder: 'Rol', type: 'rol'},
+            {label: 'Ocupacion', placeholder: 'Rol', type: 'rol'},
             {label: 'Correo', placeholder: 'Correo', type: 'email',  rules: {pattern: {value: EMAIL_REGEX, message: 'Email no válido'}}},
             {label: 'Contraseña', placeholder: 'Contraseña', type: 'password', rules: {pattern: {value: PASSWORD_REGEX, message: 'Contraseña no válida'}}},
         ]}

@@ -119,14 +119,14 @@ const ProjectDetail = () => {
               <>
                 <h2>¿Estás seguro de unirte al equipo?</h2>
                 <img src="https://media3.giphy.com/media/3V52SV0C5mnDKGVZmU/giphy.gif?cid=6c09b952vqfvxregqrg5ki7la3fxbnny2ehqh5nbokg4lft6&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=s" />
-                <button>Unirme</button>
+                <button onClick={()=>navigation("/dashboard/join")}>Unirme</button>
               </>
             )}
             {typeModal === "invest" && (
               <>
                 <h2>Serás dirigido a la plataforma de pago en unos momentos</h2>
                 <img src="https://cdn.dribbble.com/users/1303437/screenshots/3202506/multiple-cards-800x600_2.gif" />
-                <button>Invertir</button>
+                <button onClick={()=> navigation("/dashboard/invest")}>Invertir</button>
               </>
             )}
             <button className="red" onClick={() => setShowModal(false)}>X</button>

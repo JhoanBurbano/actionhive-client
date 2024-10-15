@@ -80,6 +80,14 @@ const ProjectDetailComponent: React.FC<ProjectDetailComponentProps> = ({
                                 value = `${value} meses`
                             }
 
+                            if(key === "returnRate") {
+                                value = `${value} E.A`
+                            }
+
+                            if(key === "projectRiskCalculation") {
+                                value = `${value} anual`
+                            }
+
                             return (
                                 <tr key={i}>
                                     <th>{parseProjectProps(key)}</th>

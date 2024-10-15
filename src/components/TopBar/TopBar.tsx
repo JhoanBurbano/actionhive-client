@@ -21,15 +21,15 @@ const TopBar = () => {
         user === null ? (
           <>
           <Link to={"/login"}>
-              <button className="top-bar__access-button outline">Login</button>
+              <button className="top-bar__access-button ">Login</button>
           </Link>
           <Link to={"/register"}>
-              <button className="top-bar__access-button outline">Register</button>
+              <button className="top-bar__access-button ">Register</button>
           </Link>
           </>
         ) : (
           <Link to={"/dashboard"}>
-              <button className="top-bar__access-button outline">Dashboard</button>
+              <button className="top-bar__access-button ">Dashboard</button>
           </Link>
         )
       }
