@@ -57,7 +57,7 @@ const AccessFrom: React.FC<AccessFormProps> = ({
   return (
     <form className="access-form" onSubmit={handleSubmit}>
       <h3 className="access-form__title">{title}</h3>
-      <p className="access-form__description">{description}</p>
+      <p className="access-form__description text-center">{description}</p>
       {
         <>
           {fields.map(({ label, placeholder, type, rules = {} }, index) => (

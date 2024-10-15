@@ -32,7 +32,7 @@ const Register = () => {
   return (
     <AccessForm
         title="Regístrate"
-        description="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi deleniti vel tempore quam cumque nam."
+        description="Ingresa tus datos para registrarte y empezar a disfrutar de nuestros servicios"
         control={control}
         fields={[
             {label: 'Nombre', placeholder: 'Nombre', type: 'firstname', rules: {minLength: {value: 3, message: 'El nombre debe tener al menos 3 caracteres'}}},

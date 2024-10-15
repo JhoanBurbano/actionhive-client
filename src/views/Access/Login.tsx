@@ -26,7 +26,7 @@ const Login = () => {
   return (
     <AccessForm
         title="Iniciar Sesion"
-        description="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi deleniti vel tempore quam cumque nam."
+        description="Ingresa tus datos para iniciar sesion"
         control={control}
         fields={[
             {label: 'Correo', placeholder: 'Correo', type: 'email'},
